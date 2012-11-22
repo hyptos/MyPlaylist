@@ -36,3 +36,17 @@ MyPlaylist_view_slugPlaylist:
     requirements:
         annee:  \d{4}
         format: html|xml
+
+#PARTIE POUR LES MUSIQUES
+MyPlaylist_song:
+    pattern:   /song
+    defaults:  { _controller: MyPlaylistAppBundle:Song:index }
+
+MyPlaylist_addSong:
+    pattern:   /song/add
+    defaults:  { _controller: MyPlaylistAppBundle:Song:add }
+
+MyPlaylist_editSong:
+    pattern:   /song/edit
+    defaults:  { _controller: MyPlaylistAppBundle:Song:edit }
+
