@@ -1,4 +1,4 @@
-MyPlaylist_Home:
+MyPlaylist_home:
     pattern:  /
     defaults: { _controller: MyPlaylistAppBundle:Home:index }
 
@@ -6,16 +6,20 @@ MyPlaylist_Home:
 MyPlaylist_view:
     pattern:   /chanson/{id}
     defaults:  { _controller: MyPlaylistAppBundle:Home:view }
+
+MyPlaylist_search:
+    pattern:   /search
+    defaults:  { _controller: MyPlaylistAppBundle:Home:search }
     
 MyPlaylist_add:
     pattern:   /add
     defaults:  { _controller: MyPlaylistAppBundle:Home:add }
 
-MyPlaylist_add:
+MyPlaylist_edit:
     pattern:   /edit
     defaults:  { _controller: MyPlaylistAppBundle:Home:edit }
 
-MyPlaylist_add:
+MyPlaylist_del:
     pattern:   /del
     defaults:  { _controller: MyPlaylistAppBundle:Home:del }
 
@@ -29,3 +33,7 @@ MyPlaylist_view_slug:
 MyPlaylist_mail:
     pattern:   /mail
     defaults:  { _controller: MyPlaylistAppBundle:Home:mail }
+
+MyPlaylist_about:
+    pattern:   /about
+    defaults:  { _controller: MyPlaylistAppBundle:Home:viewAbout }

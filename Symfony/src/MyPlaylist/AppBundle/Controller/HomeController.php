@@ -16,16 +16,24 @@ class HomeController extends Controller
 
     public function viewAction($id)
     {
-        // Affiche le detail d'une chanson
-
+        // Affiche le detail d'une chanson 
+        
         return new Response("Affichage de la chanson d'id : ".$id.".");
     }
 
-       public function viewSlugAction($slug,$annee,$format)
+    public function viewSlugAction($slug,$annee,$format)
     {
     	// Affiche le detail d'une chanson spécifique
 
         return new Response("On pourrait afficher la chanson correspondant au slug '".$slug."', créé en ".$annee." et au format ".$format.".");
+    }
+
+
+    public function viewAboutAction()
+    {
+        // Affiche la page apropos
+
+       return $this->render('MyPlaylistAppBundle:MyPlaylist:about.html.twig');
     }
 
     public function addAction()

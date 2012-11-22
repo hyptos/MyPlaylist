@@ -105,13 +105,13 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         if (0 === strpos($pathinfo, '/home')) {
-            // MyPlaylist_Home
+            // MyPlaylist_home
             if (rtrim($pathinfo, '/') === '/home') {
                 if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'MyPlaylist_Home');
+                    return $this->redirect($pathinfo.'/', 'MyPlaylist_home');
                 }
 
-                return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::indexAction',  '_route' => 'MyPlaylist_Home',);
+                return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::indexAction',  '_route' => 'MyPlaylist_home',);
             }
 
             // MyPlaylist_view
@@ -119,9 +119,24 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::viewAction',)), array('_route' => 'MyPlaylist_view'));
             }
 
+            // MyPlaylist_search
+            if ($pathinfo === '/home/search') {
+                return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::searchAction',  '_route' => 'MyPlaylist_search',);
+            }
+
             // MyPlaylist_add
+            if ($pathinfo === '/home/add') {
+                return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::addAction',  '_route' => 'MyPlaylist_add',);
+            }
+
+            // MyPlaylist_edit
+            if ($pathinfo === '/home/edit') {
+                return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::editAction',  '_route' => 'MyPlaylist_edit',);
+            }
+
+            // MyPlaylist_del
             if ($pathinfo === '/home/del') {
-                return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::delAction',  '_route' => 'MyPlaylist_add',);
+                return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::delAction',  '_route' => 'MyPlaylist_del',);
             }
 
             // MyPlaylist_view_slug
@@ -132,6 +147,11 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             // MyPlaylist_mail
             if ($pathinfo === '/home/mail') {
                 return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::mailAction',  '_route' => 'MyPlaylist_mail',);
+            }
+
+            // MyPlaylist_about
+            if ($pathinfo === '/home/about') {
+                return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::viewAboutAction',  '_route' => 'MyPlaylist_about',);
             }
 
         }
