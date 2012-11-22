@@ -149,6 +149,21 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::viewSlugAction',  'format' => 'html',)), array('_route' => 'MyPlaylist_view_slugPlaylist'));
         }
 
+        // MyPlaylist_song
+        if ($pathinfo === '/song') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::indexAction',  '_route' => 'MyPlaylist_song',);
+        }
+
+        // MyPlaylist_addSong
+        if ($pathinfo === '/song/add') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::addAction',  '_route' => 'MyPlaylist_addSong',);
+        }
+
+        // MyPlaylist_editSong
+        if ($pathinfo === '/song/edit') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::editAction',  '_route' => 'MyPlaylist_editSong',);
+        }
+
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
     }
 }

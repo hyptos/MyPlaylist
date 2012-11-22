@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('MyPlaylistAppBundle:MyPlaylist:index.html.twig', array('nom' => 'Antoine'));
+        return $this->render('MyPlaylistAppBundle:MyPlaylist:index.html.twig');
     }
 
 
