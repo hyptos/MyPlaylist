@@ -14,20 +14,6 @@ class HomeController extends Controller
         return $this->render('MyPlaylistAppBundle:MyPlaylist:index.html.twig', array('nom' => 'Antoine'));
     }
 
-    public function viewAction($id)
-    {
-        // Affiche le detail d'une chanson 
-        
-        return new Response("Affichage de la chanson d'id : ".$id.".");
-    }
-
-    public function viewSlugAction($slug,$annee,$format)
-    {
-    	// Affiche le detail d'une chanson spécifique
-
-        return new Response("On pourrait afficher la chanson correspondant au slug '".$slug."', créé en ".$annee." et au format ".$format.".");
-    }
-
 
     public function viewAboutAction()
     {
@@ -36,23 +22,13 @@ class HomeController extends Controller
        return $this->render('MyPlaylistAppBundle:MyPlaylist:about.html.twig');
     }
 
-    public function addAction()
+    public function searchAction()
     {
-    	// Permet d'ajouter une chanson
-        return $this->render('MyPlaylistAppBundle:MyPlaylist:index.html.twig', array('nom' => 'Antoine'));
+        // Affiche la page apropos
+
+       return $this->render('MyPlaylistAppBundle:MyPlaylist:search.html.twig');
     }
 
-    public function editAction()
-    {
-    	//Permet de modifier une chanson
-        return $this->render('MyPlaylistAppBundle:MyPlaylist:index.html.twig', array('nom' => 'Antoine'));
-    }
-
-    public function delAction()
-    {
-    	//Permet de supprimer une chanson
-        return $this->render('MyPlaylistAppBundle:MyPlaylist:index.html.twig', array('nom' => 'Antoine'));
-    }
 
     public function mailAction() {
     	$contenu = $this->renderView('MyPlaylistAppBundle:MyPlaylist:email.txt.twig', array(

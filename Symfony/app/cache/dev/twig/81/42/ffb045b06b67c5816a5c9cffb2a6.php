@@ -1,7 +1,7 @@
 <?php
 
-/* MyPlaylistAppBundle:MyPlaylist:index.html.twig */
-class __TwigTemplate_88e4f8966c15a97536010ae2ac290b90 extends Twig_Template
+/* MyPlaylistAppBundle:Playlist:index.html.twig */
+class __TwigTemplate_8142ffb045b06b67c5816a5c9cffb2a6 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -28,15 +28,15 @@ class __TwigTemplate_88e4f8966c15a97536010ae2ac290b90 extends Twig_Template
         echo "\">Home</a></h3>
         <h3><a href=\"";
         // line 8
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_addPlaylist"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_add"), "html", null, true);
         echo "\">Ajouter</a></h3>
         <h3><a href=\"";
         // line 9
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_editPlaylist"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_edit"), "html", null, true);
         echo "\">Modifier</a></h3>
         <h3><a href=\"";
         // line 10
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_delPlaylist"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_del"), "html", null, true);
         echo "\">Supprimer</a></h3>
         <h3><a href=\"";
         // line 11
@@ -58,7 +58,7 @@ class __TwigTemplate_88e4f8966c15a97536010ae2ac290b90 extends Twig_Template
 
     public function getTemplateName()
     {
-        return "MyPlaylistAppBundle:MyPlaylist:index.html.twig";
+        return "MyPlaylistAppBundle:Playlist:index.html.twig";
     }
 
     public function isTraitable()

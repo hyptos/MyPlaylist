@@ -28,15 +28,15 @@ class __TwigTemplate_de3e4a73624e54ec0f8dfd5cf5dd12d7 extends Twig_Template
         echo "\">Home</a></h3>
         <h3><a href=\"";
         // line 8
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_add"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_addPlaylist"), "html", null, true);
         echo "\">Ajouter</a></h3>
         <h3><a href=\"";
         // line 9
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_edit"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_editPlaylist"), "html", null, true);
         echo "\">Modifier</a></h3>
         <h3><a href=\"";
         // line 10
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_del"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_delPlaylist"), "html", null, true);
         echo "\">Supprimer</a></h3>
         <h3><a href=\"";
         // line 11

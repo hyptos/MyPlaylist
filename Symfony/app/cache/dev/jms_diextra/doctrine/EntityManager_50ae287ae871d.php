@@ -1,6 +1,6 @@
 <?php
 
-namespace EntityManager50ae1dd203fe7_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM;
+namespace EntityManager50ae287ae871d_546a8d27f194334ee012bfe64f629947b07e4919\__CG__\Doctrine\ORM;
 
 /**
  * CG library enhanced proxy class.

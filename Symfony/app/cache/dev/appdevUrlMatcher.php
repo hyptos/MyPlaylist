@@ -104,56 +104,49 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        if (0 === strpos($pathinfo, '/home')) {
-            // MyPlaylist_home
-            if (rtrim($pathinfo, '/') === '/home') {
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'MyPlaylist_home');
-                }
+        // MyPlaylist_home
+        if ($pathinfo === '/home') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::indexAction',  '_route' => 'MyPlaylist_home',);
+        }
 
-                return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::indexAction',  '_route' => 'MyPlaylist_home',);
-            }
+        // MyPlaylist_search
+        if ($pathinfo === '/home/search') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::searchAction',  '_route' => 'MyPlaylist_search',);
+        }
 
-            // MyPlaylist_view
-            if (0 === strpos($pathinfo, '/home/chanson') && preg_match('#^/home/chanson/(?<id>[^/]+)$#s', $pathinfo, $matches)) {
-                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::viewAction',)), array('_route' => 'MyPlaylist_view'));
-            }
+        // MyPlaylist_mail
+        if ($pathinfo === '/home/mail') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::mailAction',  '_route' => 'MyPlaylist_mail',);
+        }
 
-            // MyPlaylist_search
-            if ($pathinfo === '/home/search') {
-                return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::searchAction',  '_route' => 'MyPlaylist_search',);
-            }
+        // MyPlaylist_about
+        if ($pathinfo === '/home/about') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::viewAboutAction',  '_route' => 'MyPlaylist_about',);
+        }
 
-            // MyPlaylist_add
-            if ($pathinfo === '/home/add') {
-                return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::addAction',  '_route' => 'MyPlaylist_add',);
-            }
+        // MyPlaylist_viewPlaylist
+        if (0 === strpos($pathinfo, '/playlist') && preg_match('#^/playlist/(?<id>[^/]+)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::viewAction',)), array('_route' => 'MyPlaylist_viewPlaylist'));
+        }
 
-            // MyPlaylist_edit
-            if ($pathinfo === '/home/edit') {
-                return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::editAction',  '_route' => 'MyPlaylist_edit',);
-            }
+        // MyPlaylist_addPlaylist
+        if ($pathinfo === '/playlist/add') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::addAction',  '_route' => 'MyPlaylist_addPlaylist',);
+        }
 
-            // MyPlaylist_del
-            if ($pathinfo === '/home/del') {
-                return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::delAction',  '_route' => 'MyPlaylist_del',);
-            }
+        // MyPlaylist_editPlaylist
+        if ($pathinfo === '/playlist/edit') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::editAction',  '_route' => 'MyPlaylist_editPlaylist',);
+        }
 
-            // MyPlaylist_view_slug
-            if (preg_match('#^/home/(?<annee>\\d{4})/(?<slug>[^/\\.]+)(?:\\.(?<format>html|xml))?$#s', $pathinfo, $matches)) {
-                return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::viewSlugAction',  'format' => 'html',)), array('_route' => 'MyPlaylist_view_slug'));
-            }
+        // MyPlaylist_delPlaylist
+        if ($pathinfo === '/playlist/del') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::delAction',  '_route' => 'MyPlaylist_delPlaylist',);
+        }
 
-            // MyPlaylist_mail
-            if ($pathinfo === '/home/mail') {
-                return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::mailAction',  '_route' => 'MyPlaylist_mail',);
-            }
-
-            // MyPlaylist_about
-            if ($pathinfo === '/home/about') {
-                return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\HomeController::viewAboutAction',  '_route' => 'MyPlaylist_about',);
-            }
-
+        // MyPlaylist_view_slugPlaylist
+        if (0 === strpos($pathinfo, '/playlist') && preg_match('#^/playlist/(?<annee>\\d{4})/(?<slug>[^/\\.]+)(?:\\.(?<format>html|xml))?$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::viewSlugAction',  'format' => 'html',)), array('_route' => 'MyPlaylist_view_slugPlaylist'));
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

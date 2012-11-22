@@ -1,7 +1,7 @@
 <?php
 
-/* MyPlaylistAppBundle:MyPlaylist:index.html.twig */
-class __TwigTemplate_88e4f8966c15a97536010ae2ac290b90 extends Twig_Template
+/* MyPlaylistAppBundle:MyPlaylist:search.html.twig */
+class __TwigTemplate_935d13412787442e559d42d921d02dfd extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
@@ -19,7 +19,7 @@ class __TwigTemplate_88e4f8966c15a97536010ae2ac290b90 extends Twig_Template
         echo "<!DOCTYPE html>
 <html>
     <head>
-        <title>Bienvenue sur l'application MyPlaylist!</title>
+        <title>Bienvenue sur la recherche</title>
     </head>
     <body>
         <h3><a href=\"";
@@ -47,10 +47,7 @@ class __TwigTemplate_88e4f8966c15a97536010ae2ac290b90 extends Twig_Template
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_about"), "html", null, true);
         echo "\">A Propos</a></h3>
         <p>
-            Le Hello World est un grand classique en programmation.
-            Il signifie énormément, car cela veut dire que vous avez
-            réussi à exécuter le programme pour accomplir une tâche simple :
-            afficher ce hello world !
+            RECHERCHE
         </p>
     </body>
 </html>";
@@ -58,7 +55,7 @@ class __TwigTemplate_88e4f8966c15a97536010ae2ac290b90 extends Twig_Template
 
     public function getTemplateName()
     {
-        return "MyPlaylistAppBundle:MyPlaylist:index.html.twig";
+        return "MyPlaylistAppBundle:MyPlaylist:search.html.twig";
     }
 
     public function isTraitable()

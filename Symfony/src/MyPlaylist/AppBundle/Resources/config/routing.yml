@@ -1,39 +1,38 @@
 MyPlaylist_home:
-    pattern:  /
+    pattern:  /home
     defaults: { _controller: MyPlaylistAppBundle:Home:index }
 
-    
-MyPlaylist_view:
-    pattern:   /chanson/{id}
-    defaults:  { _controller: MyPlaylistAppBundle:Home:view }
-
 MyPlaylist_search:
-    pattern:   /search
+    pattern:   /home/search
     defaults:  { _controller: MyPlaylistAppBundle:Home:search }
-    
-MyPlaylist_add:
-    pattern:   /add
-    defaults:  { _controller: MyPlaylistAppBundle:Home:add }
-
-MyPlaylist_edit:
-    pattern:   /edit
-    defaults:  { _controller: MyPlaylistAppBundle:Home:edit }
-
-MyPlaylist_del:
-    pattern:   /del
-    defaults:  { _controller: MyPlaylistAppBundle:Home:del }
-
-MyPlaylist_view_slug:
-    pattern:   /{annee}/{slug}.{format}
-    defaults:  { _controller: MyPlaylistAppBundle:Home:viewSlug, format: html }
-    requirements:
-        annee:  \d{4}
-        format: html|xml
 
 MyPlaylist_mail:
-    pattern:   /mail
+    pattern:   /home/mail
     defaults:  { _controller: MyPlaylistAppBundle:Home:mail }
 
 MyPlaylist_about:
-    pattern:   /about
+    pattern:   /home/about
     defaults:  { _controller: MyPlaylistAppBundle:Home:viewAbout }
+    
+MyPlaylist_viewPlaylist:
+    pattern:   /playlist/{id}
+    defaults:  { _controller: MyPlaylistAppBundle:Playlist:view }
+    
+MyPlaylist_addPlaylist:
+    pattern:   /playlist/add
+    defaults:  { _controller: MyPlaylistAppBundle:Playlist:add }
+
+MyPlaylist_editPlaylist:
+    pattern:   /playlist/edit
+    defaults:  { _controller: MyPlaylistAppBundle:Playlist:edit }
+
+MyPlaylist_delPlaylist:
+    pattern:   /playlist/del
+    defaults:  { _controller: MyPlaylistAppBundle:Playlist:del }
+
+MyPlaylist_view_slugPlaylist:
+    pattern:   /playlist/{annee}/{slug}.{format}
+    defaults:  { _controller: MyPlaylistAppBundle:Playlist:viewSlug, format: html }
+    requirements:
+        annee:  \d{4}
+        format: html|xml

@@ -2,10 +2,6 @@ my_playlist_app:
     resource: "@MyPlaylistAppBundle/Resources/config/routing.yml"
     prefix:   /
 
-MyPlaylistAppBundle:
-    resource:  "@MyPlaylistAppBundle/Resources/config/routing.yml"
-    prefix:    /home
-
 # Internal routing configuration to handle ESI
 #_internal:
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
