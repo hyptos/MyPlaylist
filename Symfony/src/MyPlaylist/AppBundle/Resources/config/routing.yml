@@ -1,3 +1,4 @@
+#PARTIE POUR LA HOMEPAGE
 MyPlaylist_home:
     pattern:  /
     defaults: { _controller: MyPlaylistAppBundle:Home:index }
@@ -37,3 +38,16 @@ MyPlaylist_mail:
 MyPlaylist_about:
     pattern:   /about
     defaults:  { _controller: MyPlaylistAppBundle:Home:viewAbout }
+
+#PARTIE POUR LES MUSIQUES
+MyPlaylist_song:
+    pattern:   /song
+    defaults:  { _controller: MyPlaylistAppBundle:Song:index }
+
+MyPlaylist_addSong:
+    pattern:   /song/add
+    defaults:  { _controller: MyPlaylistAppBundle:Song:add }
+
+MyPlaylist_editSong:
+    pattern:   /song/edit
+    defaults:  { _controller: MyPlaylistAppBundle:Song:edit }
