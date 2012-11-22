@@ -1,0 +1,7 @@
+parameters:
+#    my_playlist_app.example.class: MyPlaylist\AppBundle\Example
+
+services:
+#    my_playlist_app.example:
+#        class: %my_playlist_app.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
