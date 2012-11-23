@@ -7,50 +7,37 @@ class __TwigTemplate_935d13412787442e559d42d921d02dfd extends Twig_Template
     {
         parent::__construct($env);
 
-        $this->parent = false;
+        $this->parent = $this->env->loadTemplate("MyPlaylistAppBundle:MyPlaylist:layout.html.twig");
 
         $this->blocks = array(
+            'title' => array($this, 'block_title'),
+            'body' => array($this, 'block_body'),
         );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return "MyPlaylistAppBundle:MyPlaylist:layout.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        // line 1
-        echo "<!DOCTYPE html>
-<html>
-    <head>
-        <title>Bienvenue sur la recherche</title>
-    </head>
-    <body>
-        <h3><a href=\"";
-        // line 7
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_home"), "html", null, true);
-        echo "\">Home</a></h3>
-        <h3><a href=\"";
-        // line 8
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_addPlaylist"), "html", null, true);
-        echo "\">Ajouter</a></h3>
-        <h3><a href=\"";
-        // line 9
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_editPlaylist"), "html", null, true);
-        echo "\">Modifier</a></h3>
-        <h3><a href=\"";
-        // line 10
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_delPlaylist"), "html", null, true);
-        echo "\">Supprimer</a></h3>
-        <h3><a href=\"";
-        // line 11
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_search"), "html", null, true);
-        echo "\">Rechercher</a></h3>
-        <h3><a href=\"";
-        // line 12
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_about"), "html", null, true);
-        echo "\">A Propos</a></h3>
-        <p>
-            RECHERCHE
-        </p>
-    </body>
-</html>";
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    public function block_title($context, array $blocks = array())
+    {
+        $this->displayParentBlock("title", $context, $blocks);
+        echo " - Recherche";
+    }
+
+    // line 5
+    public function block_body($context, array $blocks = array())
+    {
+        // line 6
+        echo "     Faire une recherche : <input type=\"text\" data-provide=\"typeahead\">
+";
     }
 
     public function getTemplateName()
@@ -65,6 +52,6 @@ class __TwigTemplate_935d13412787442e559d42d921d02dfd extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  45 => 12,  41 => 11,  37 => 10,  33 => 9,  29 => 8,  25 => 7,  17 => 1,);
+        return array (  37 => 6,  34 => 5,  27 => 3,);
     }
 }

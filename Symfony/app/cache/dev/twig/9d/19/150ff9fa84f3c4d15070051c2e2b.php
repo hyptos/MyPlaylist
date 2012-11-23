@@ -36,9 +36,6 @@ class __TwigTemplate_9d19150ff9fa84f3c4d15070051c2e2b extends Twig_Template
     public function block_body($context, array $blocks = array())
     {
         // line 6
-        echo "\t";
-        $this->env->loadTemplate("MyPlaylistAppBundle:Song:menu.html.twig")->display($context);
-        // line 7
         echo "     Il s'agit de la vue gérant l'édition des musiques
 ";
     }
@@ -55,6 +52,6 @@ class __TwigTemplate_9d19150ff9fa84f3c4d15070051c2e2b extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  40 => 7,  37 => 6,  34 => 5,  27 => 3,);
+        return array (  37 => 6,  34 => 5,  27 => 3,);
     }
 }
