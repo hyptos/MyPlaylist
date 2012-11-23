@@ -3,6 +3,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}MyPlaylist{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('bundles/myplaylistapp/css/style.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('bundles/myplaylistapp/css/bootstrap.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('bundles/myplaylistapp/css/bootstrap-responsive.css') }}" type="text/css" media="all" />
+
+        {% endblock %}
     </head>
     <body>
         <nav>

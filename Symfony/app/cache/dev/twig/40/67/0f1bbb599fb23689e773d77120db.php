@@ -7,41 +7,40 @@ class __TwigTemplate_40670f1bbb599fb23689e773d77120db extends Twig_Template
     {
         parent::__construct($env);
 
-        $this->parent = false;
+        $this->parent = $this->env->loadTemplate("MyPlaylistAppBundle:MyPlaylist:layout.html.twig");
 
         $this->blocks = array(
+            'title' => array($this, 'block_title'),
+            'body' => array($this, 'block_body'),
         );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return "MyPlaylistAppBundle:MyPlaylist:layout.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        // line 1
-        echo "<!DOCTYPE html>
-<html>
-    <head>
-        <title>A propos !</title>
-    </head>
-    <body>
-        <h3><a href=\"";
-        // line 7
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_addSong"), "html", null, true);
-        echo "\">Ajouter musique</a></h3>
-        <h3><a href=\"";
-        // line 8
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_editSong"), "html", null, true);
-        echo "\">Editer musique</a></h3>
-        <h3><a href=\"#\">Visualiser Liste musique</a></h3>
-        <h3><a href=\"";
-        // line 10
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_home"), "html", null, true);
-        echo "\">Retour à l'accueil</a></h3>
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+    }
 
-        <p>
-           Il s'agit de la vue gérant les musiques
-        </p>
-       
-    </body>
-</html>";
+    // line 3
+    public function block_title($context, array $blocks = array())
+    {
+        $this->displayParentBlock("title", $context, $blocks);
+        echo " - Musiques";
+    }
+
+    // line 5
+    public function block_body($context, array $blocks = array())
+    {
+        // line 6
+        echo "    ";
+        $this->env->loadTemplate("MyPlaylistAppBundle:Song:menu.html.twig")->display($context);
+        // line 7
+        echo "     Il s'agit de la vue gérant les musiques.
+";
     }
 
     public function getTemplateName()
@@ -56,6 +55,6 @@ class __TwigTemplate_40670f1bbb599fb23689e773d77120db extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  34 => 10,  29 => 8,  25 => 7,  17 => 1,);
+        return array (  40 => 7,  37 => 6,  34 => 5,  27 => 3,);
     }
 }

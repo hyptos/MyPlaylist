@@ -7,33 +7,40 @@ class __TwigTemplate_b228355ff09a40d4d5fb5b52899cf685 extends Twig_Template
     {
         parent::__construct($env);
 
-        $this->parent = false;
+        $this->parent = $this->env->loadTemplate("MyPlaylistAppBundle:MyPlaylist:layout.html.twig");
 
         $this->blocks = array(
+            'title' => array($this, 'block_title'),
+            'body' => array($this, 'block_body'),
         );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return "MyPlaylistAppBundle:MyPlaylist:layout.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        // line 1
-        echo "<!DOCTYPE html>
-<html>
-    <head>
-        <title>Ajout de musique dans la bibliothèque !</title>
-    </head>
-    <body>
-       
-        <h3><a href=\"";
-        // line 8
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("MyPlaylist_home"), "html", null, true);
-        echo "\">Retour à l'accueil</a></h3>
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+    }
 
-        <p>
-           Il s'agit de la vue gérant l'ajout de musiques
-        </p>
-       
-    </body>
-</html>";
+    // line 3
+    public function block_title($context, array $blocks = array())
+    {
+        $this->displayParentBlock("title", $context, $blocks);
+        echo " - Ajout";
+    }
+
+    // line 5
+    public function block_body($context, array $blocks = array())
+    {
+        // line 6
+        echo "\t";
+        $this->env->loadTemplate("MyPlaylistAppBundle:Song:menu.html.twig")->display($context);
+        // line 7
+        echo "     Il s'agit de la vue gérant l'ajout de musiques
+";
     }
 
     public function getTemplateName()
@@ -48,6 +55,6 @@ class __TwigTemplate_b228355ff09a40d4d5fb5b52899cf685 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  26 => 8,  17 => 1,);
+        return array (  40 => 7,  37 => 6,  34 => 5,  27 => 3,);
     }
 }

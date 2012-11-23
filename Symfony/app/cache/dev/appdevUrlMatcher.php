@@ -125,8 +125,8 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // MyPlaylist_viewPlaylist
-        if (0 === strpos($pathinfo, '/playlist') && preg_match('#^/playlist/(?<id>[^/]+)$#s', $pathinfo, $matches)) {
-            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::viewAction',)), array('_route' => 'MyPlaylist_viewPlaylist'));
+        if ($pathinfo === '/playlist') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::indexAction',  '_route' => 'MyPlaylist_viewPlaylist',);
         }
 
         // MyPlaylist_addPlaylist
@@ -162,6 +162,11 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         // MyPlaylist_editSong
         if ($pathinfo === '/song/edit') {
             return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::editAction',  '_route' => 'MyPlaylist_editSong',);
+        }
+
+        // MyPlaylist_delSong
+        if ($pathinfo === '/song/del') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::delAction',  '_route' => 'MyPlaylist_delSong',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
