@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>A propos !</title>
-    </head>
-    <body>
-        <h3><a href="{{ path('MyPlaylist_home') }}">Home</a></h3>
-        <h3><a href="{{ path('MyPlaylist_addPlaylist') }}">Ajouter</a></h3>
-        <h3><a href="{{ path('MyPlaylist_editPlaylist') }}">Modifier</a></h3>
-        <h3><a href="{{ path('MyPlaylist_delPlaylist') }}">Supprimer</a></h3>
-        <h3><a href="{{ path('MyPlaylist_search') }}">Rechercher</a></h3>
-        <h3><a href="{{ path('MyPlaylist_about') }}">A Propos</a></h3>
+{% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
 
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+{% block body %}
         <p>
             Ce site a été realiser dans un but pédagogique et dans le cadre d'un projet en Licence de Math/Info.
         </p>
@@ -20,5 +12,4 @@
         <p>
             Nous remercions machin, bidule et truc.
         </p>
-    </body>
-</html>
+{% endblock %}

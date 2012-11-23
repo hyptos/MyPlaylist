@@ -43,7 +43,7 @@ class SongController extends Controller
     public function delAction()
     {
     	//Permet de supprimer une chanson
-        return $this->render('MyPlaylistAppBundle:Song:index.html.twig', array('nom' => 'Antoine'));
+        return $this->render('MyPlaylistAppBundle:Song:del.html.twig');
     }
   
 }

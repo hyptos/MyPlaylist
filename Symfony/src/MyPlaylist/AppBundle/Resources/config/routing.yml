@@ -1,3 +1,4 @@
+#PARTIE POUR LE HOME
 MyPlaylist_home:
     pattern:  /home
     defaults: { _controller: MyPlaylistAppBundle:Home:index }
@@ -13,7 +14,9 @@ MyPlaylist_mail:
 MyPlaylist_about:
     pattern:   /home/about
     defaults:  { _controller: MyPlaylistAppBundle:Home:viewAbout }
-    
+
+
+#PARTIE POUR LES PLAYLISTS
 MyPlaylist_viewPlaylist:
     pattern:   /playlist/{id}
     defaults:  { _controller: MyPlaylistAppBundle:Playlist:view }
@@ -50,3 +53,6 @@ MyPlaylist_editSong:
     pattern:   /song/edit
     defaults:  { _controller: MyPlaylistAppBundle:Song:edit }
 
+MyPlaylist_delSong:
+    pattern:   /song/del
+    defaults:  { _controller: MyPlaylistAppBundle:Song:del }

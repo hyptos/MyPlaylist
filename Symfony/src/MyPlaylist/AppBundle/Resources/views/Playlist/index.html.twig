@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Bienvenue sur l'application MyPlaylist!</title>
-    </head>
-    <body>
-        <h3><a href="{{ path('MyPlaylist_home') }}">Home</a></h3>
-        <h3><a href="{{ path('MyPlaylist_add') }}">Ajouter</a></h3>
-        <h3><a href="{{ path('MyPlaylist_edit') }}">Modifier</a></h3>
-        <h3><a href="{{ path('MyPlaylist_del') }}">Supprimer</a></h3>
-        <h3><a href="{{ path('MyPlaylist_search') }}">Rechercher</a></h3>
-        <h3><a href="{{ path('MyPlaylist_about') }}">A Propos</a></h3>
-        <p>
-            Le Hello World est un grand classique en programmation.
-            Il signifie énormément, car cela veut dire que vous avez
-            réussi à exécuter le programme pour accomplir une tâche simple :
-            afficher ce hello world !
-        </p>
-    </body>
-</html>
+{% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+{% block body %}
+    Accueil page playlist. Affichage de playlist disponible.
+{% endblock %}

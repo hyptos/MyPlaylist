@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Ajout de musique dans la bibliothèque !</title>
-    </head>
-    <body>
-       
-        <h3><a href="{{ path('MyPlaylist_home') }}">Retour à l'accueil</a></h3>
+{% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
 
-        <p>
-           Il s'agit de la vue gérant l'ajout de musiques
-        </p>
-       
-    </body>
-</html>
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+{% block body %}
+	{% include "MyPlaylistAppBundle:Song:menu.html.twig" %}
+     Il s'agit de la vue gérant l'ajout de musiques
+{% endblock %}

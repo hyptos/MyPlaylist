@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}MyPlaylist{% endblock %}</title>
+    </head>
+    <body>
+        <nav>
+            <h3><a href="{{ path('MyPlaylist_home') }}">Home</a></h3>
+            <h3><a href="{{ path('MyPlaylist_addPlaylist') }}">Ajouter</a></h3>
+            <h3><a href="{{ path('MyPlaylist_editPlaylist') }}">Modifier</a></h3>
+            <h3><a href="{{ path('MyPlaylist_delPlaylist') }}">Supprimer</a></h3>
+            <h3><a href="{{ path('MyPlaylist_search') }}">Rechercher</a></h3>
+            <h3><a href="{{ path('MyPlaylist_song') }}">Musiques</a></h3>
+            <h3><a href="{{ path('MyPlaylist_about') }}">A Propos</a></h3>
+        </nav>
+        {% block body %}
+        {% endblock %}
+        <footer>
+            copyright &copy; 2012 Antoine Martin, Dorian Garcia 
+        </footer>
+
+    </body>
+</html>
