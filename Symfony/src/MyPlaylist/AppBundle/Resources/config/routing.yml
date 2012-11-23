@@ -21,17 +21,27 @@ MyPlaylist_viewPlaylist:
     pattern:   /playlist
     defaults:  { _controller: MyPlaylistAppBundle:Playlist:index }
 
+MyPlaylist_viewPlaylistId:
+    pattern:   /playlist/{id}
+    defaults:  { _controller: MyPlaylistAppBundle:Playlist:viewPlaylist }
+    requirements:
+        id:  \d{4}
+
 MyPlaylist_addPlaylist:
-    pattern:   /playlist/add
+    pattern:   /playlist/add/
     defaults:  { _controller: MyPlaylistAppBundle:Playlist:add }
 
 MyPlaylist_editPlaylist:
     pattern:   /playlist/edit
     defaults:  { _controller: MyPlaylistAppBundle:Playlist:edit }
+    requirements:
+        id:  \d{4}
 
 MyPlaylist_delPlaylist:
     pattern:   /playlist/del
     defaults:  { _controller: MyPlaylistAppBundle:Playlist:del }
+    requirements:
+        id:  \d{4}
 
 MyPlaylist_view_slugPlaylist:
     pattern:   /playlist/{annee}/{slug}.{format}

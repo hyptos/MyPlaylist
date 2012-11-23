@@ -28,6 +28,10 @@ class Playlist
      */
     private $name;
 
+    public function __construct()
+    {
+        $this->name = "";
+    }
 
     /**
      * Get id

@@ -210,3 +210,5 @@
 50af8bef6a639,::1,GET,http://localhost/Symfony/web/app_dev.php/playlist/add,1353681903,
 50af8c2b0b7e5,::1,GET,http://localhost/Symfony/web/app_dev.php/home,1353681963,
 50af8c2c231fe,::1,GET,http://localhost/Symfony/web/app_dev.php/home,1353681964,
+50af96f570adc,::1,GET,http://localhost/Symfony/web/app_dev.php/home,1353684725,
+50af96ff247cc,::1,GET,http://localhost/Symfony/web/app_dev.php/playlist/add,1353684735,
