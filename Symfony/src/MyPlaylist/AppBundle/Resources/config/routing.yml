@@ -18,9 +18,9 @@ MyPlaylist_about:
 
 #PARTIE POUR LES PLAYLISTS
 MyPlaylist_viewPlaylist:
-    pattern:   /playlist/{id}
-    defaults:  { _controller: MyPlaylistAppBundle:Playlist:view }
-    
+    pattern:   /playlist
+    defaults:  { _controller: MyPlaylistAppBundle:Playlist:index }
+
 MyPlaylist_addPlaylist:
     pattern:   /playlist/add
     defaults:  { _controller: MyPlaylistAppBundle:Playlist:add }

@@ -12,12 +12,6 @@ class PlaylistController extends Controller
         return $this->render('MyPlaylistAppBundle:Playlist:index.html.twig');
     }
 
-    public function viewAction($id)
-    {
-        // Affiche une playlist
-        
-        return new Response("Affichage de la playlist : ".$id.".");
-    }
 
     public function viewSlugAction($slug,$annee,$format)
     {
