@@ -6,6 +6,7 @@ namespace MyPlaylist\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use MyPlaylist\AppBundle\Entity\Song;
 
 class SongController extends Controller
 {
