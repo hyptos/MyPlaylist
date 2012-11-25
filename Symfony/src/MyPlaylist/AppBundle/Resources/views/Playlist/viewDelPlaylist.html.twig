@@ -4,9 +4,9 @@
 
 {% block body %}
     List deroulante des playliste pour en supprimer une.
-    <select>
-  		{% for value in playlist %}
-    		<option value="{{ value.id }}">{{ value.name }}</option>
-  		{% endfor %}
-	</select>
+    <form action="{{ path('MyPlaylist_viewAddPlaylist') }}" method="post" {{ form_enctype(form) }}>
+    	{{ form_widget(form) }}
+    	<input type="submit" class="btn btn-primary" />
+    </form>
+
 {% endblock %}
