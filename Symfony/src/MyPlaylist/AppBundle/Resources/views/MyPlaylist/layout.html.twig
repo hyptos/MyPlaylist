@@ -48,9 +48,9 @@
                 <li class="active"><a href="{{ path('MyPlaylist_home') }}">Home</a></li>
                 <li class="dropdown"><a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Playlist <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a tabindex="-1" href="{{ path('MyPlaylist_addPlaylist') }}">Ajouter</a></li>
-                        <li><a tabindex="-1" href="{{ path('MyPlaylist_editPlaylist') }}">Modifier</a></li>
-                        <li><a tabindex="-1" href="{{ path('MyPlaylist_delPlaylist') }}">Supprimer</a></li>
+                        <li><a tabindex="-1" href="{{ path('MyPlaylist_viewAddPlaylist') }}">Ajouter</a></li>
+                        <li><a tabindex="-1" href="{{ path('MyPlaylist_viewEditPlaylist') }}">Modifier</a></li>
+                        <li><a tabindex="-1" href="{{ path('MyPlaylist_viewDelPlaylist') }}">Supprimer</a></li>
                     </ul>
                 </li>                    
                 <li><a href="{{ path('MyPlaylist_search') }}">Rechercher</a></li>
@@ -95,7 +95,7 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    {% block script %}
+    {% block javascripts %}
         <script type="text/javascript" src="{{ asset('bundles/myplaylistapp/js/jquery.js') }}"></script>
         <script type="text/javascript" src="{{ asset('bundles/myplaylistapp/js/bootstrap.js') }}"></script> 
     {% endblock %}

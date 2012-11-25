@@ -22,32 +22,32 @@ MyPlaylist_viewPlaylist:
     defaults:  { _controller: MyPlaylistAppBundle:Playlist:index }
 
 MyPlaylist_viewPlaylistId:
-    pattern:   /playlist/{id}
+    pattern:   /playlist/view/{id}
     defaults:  { _controller: MyPlaylistAppBundle:Playlist:viewPlaylist }
     requirements:
-        id:  \d{4}
+        id:  \d+
 
-MyPlaylist_addPlaylist:
-    pattern:   /playlist/add/
-    defaults:  { _controller: MyPlaylistAppBundle:Playlist:add }
+MyPlaylist_viewAddPlaylist:
+    pattern:   /playlist/add
+    defaults:  { _controller: MyPlaylistAppBundle:Playlist:viewAdd }  
 
-MyPlaylist_editPlaylist:
+MyPlaylist_viewEditPlaylist:
     pattern:   /playlist/edit
-    defaults:  { _controller: MyPlaylistAppBundle:Playlist:edit }
+    defaults:  { _controller: MyPlaylistAppBundle:Playlist:viewEditPlaylist }
     requirements:
-        id:  \d{4}
+        id:  \d+
 
-MyPlaylist_delPlaylist:
+MyPlaylist_viewDelPlaylist:
     pattern:   /playlist/del
-    defaults:  { _controller: MyPlaylistAppBundle:Playlist:del }
+    defaults:  { _controller: MyPlaylistAppBundle:Playlist:viewDelPlaylist }
     requirements:
-        id:  \d{4}
+        id:  \d+
 
 MyPlaylist_view_slugPlaylist:
     pattern:   /playlist/{annee}/{slug}.{format}
     defaults:  { _controller: MyPlaylistAppBundle:Playlist:viewSlug, format: html }
     requirements:
-        annee:  \d{4}
+        annee:  \d+
         format: html|xml
 
 #PARTIE POUR LES MUSIQUES

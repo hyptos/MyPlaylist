@@ -1,0 +1,12 @@
+{% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Supprimer{% endblock %}
+
+{% block body %}
+    Liste deroulante des playliste pour la supression.
+     <select>
+  		{% for value in playlist %}
+    		<option value="{{ value.id }}">{{ value.name }}</option>
+  		{% endfor %}
+	</select>
+{% endblock %}

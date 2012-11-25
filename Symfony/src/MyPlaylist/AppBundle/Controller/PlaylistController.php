@@ -14,15 +14,21 @@ class PlaylistController extends Controller
     }
 
 
-    public function viewPlaylistAction($id)
+    public function viewPlaylistAction(Playlist $playlist)
     {
-        // On récupère le repository
-        $repository = $this->getDoctrine()
-                           ->getManager()
-                           ->getRepository('MyPlaylistAppBundle:Playlist');
+        // Récupérons le titre de la playlist.
+        $playlist->getName();        
+        return $this->render('MyPlaylistAppBundle:Playlist:viewPlaylist.html.twig', array('playlist' => $playlist));
+    }
 
-        // On récupère l'entité correspondant à l'id $id
-        $playlist = $repository->find($id);
+    public function viewEditPlaylistAction()
+    {
+        //Affiche toute les playlist disponible
+        // On récupère toute la table Playlist
+        $playlist = $this->getDoctrine()
+                         ->getManager()
+                         ->getRepository('MyPlaylistAppBundle:Playlist')
+                         ->findAll();
 
         // $playlist est donc une instance de de l'entité Playlist
 
@@ -32,55 +38,81 @@ class PlaylistController extends Controller
             throw $this->createNotFoundException('Playlist[id='.$id.'] inexistant.');
         }
         
-        return $this->render('MyPlaylistAppBundle:Playlist:viewPlaylist.html.twig', array('playlist' => $playlist));
+        return $this->render('MyPlaylistAppBundle:Playlist:viewEditPlaylist.html.twig', array('playlist' => $playlist));
+    }
+
+    public function viewDelPlaylistAction()
+    {
+        //Affiche toute les playlist disponible
+        // On récupère toute la table Playlist
+        $playlist = $this->getDoctrine()
+                         ->getManager()
+                         ->getRepository('MyPlaylistAppBundle:Playlist')
+                         ->findAll();
+
+        // Ou null si aucune playlist n'a été trouvé avec l'id $id
+        if($playlist === null)
+        {
+            throw $this->createNotFoundException('Playlist[id='.$id.'] inexistant.');
+        }
+        
+        return $this->render('MyPlaylistAppBundle:Playlist:viewDelPlaylist.html.twig', array('playlist' => $playlist));
     }
 
     public function viewSlugAction($slug,$annee,$format)
     {
     	// Affiche le detail d'une playlist spécifique
-
         return new Response("On pourrait afficher la playlist correspondant au slug '".$slug."', créé en ".$annee." et au format ".$format.".");
     }
 
 
-    public function addAction()
+    public function viewAddAction()
     {
-    	// Permet d'ajouter une playlist
-        // Création de l'entité
-        $playlist = new Playlist(); //crée un objet vide
-        $playlist->setName("pl_des_Beatles"); // rempli l'objet 
+       $playlist = new Playlist;
 
+        // J'ai raccourci cette partie, car plus rapide à écrire !
+        $form = $this->createFormBuilder($playlist)
+            ->add('name',       'text')
+            ->getForm();
 
-        // On récupére l'EntityManager
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($playlist);
-        $em->flush();
-        
-        // On redirige vers la page de la nouvelle Playlist ( uniquement si on passe par un formulaire)
-        if( $this->get('request')->getMethod() == 'POST' )
+        // On récupère la requête.
+        $request = $this->get('request');
+
+        // On vérifie qu'elle est de type « POST ».
+        if( $request->getMethod() == 'POST' )
         {
-            $this->get('session')->setFlash('notice', 'Playlist bien enregistré');
-            return $this->render('MyPlaylistAppBundle:Playlist:viewPlaylist.html.twig', array('playlist' => $playlist));
-        }
-        
-        return $this->render('MyPlaylistAppBundle:Playlist:add.html.twig', array('playlist' => $playlist));
-        
+            // On fait le lien Requête <-> Formulaire.
+            $form->bind($request);
 
-        
+            // On vérifie que les valeurs rentrées sont correctes.
+            // (Nous verrons la validation des objets en détail plus bas dans ce chapitre.)
+            if( $form->isValid() )
+            {
+                // On l'enregistre notre objet $article dans la base de données.
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($playlist);
+                $em->flush();
+
+                // On redirige vers la page de visualisation de la playlist nouvellement créé
+            return $this->redirect($this->generateUrl('MyPlaylist_viewPlaylistId', array('id' => $playlist->getId())));
+            }
+        }
+
+        return $this->render('MyPlaylistAppBundle:Playlist:viewAddPlaylist.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
-    public function editAction()
+
+    public function editAction(Playlist $playlist)
     {
     	//Permet de modifier une playlist
                
-        // On récupère la playlist avec l'id 
-        $repository = $this->getDoctrine()
-                           ->getManager()
-                           ->getRepository('MyPlaylistAppBundle:Playlist');
-
-
-        // On récupère l'entité correspondant à l'id $id
-        $playlist = $repository->find($id);
+        // On récupère la playlist passer en parametre
+        $playlist = $this->getDoctrine()
+                         ->getManager()
+                         ->getRepository('MyPlaylistAppBundle:Playlist')
+                         ->find($id);
 
         // Ou null si aucune playlist n'a été trouvé avec l'id $id
         if($playlist === null)
@@ -100,17 +132,15 @@ class PlaylistController extends Controller
         return $this->render('MyPlaylistAppBundle:Playlist:edit.html.twig', array('playlist' => $playlist));
     }
 
-    public function delAction()
+    public function delAction(Playlist $playlist)
     {
     	//Permet de supprimer une chanson
                
-        // Création de l'entité
-        $repository = $this->getDoctrine()
-                           ->getManager()
-                           ->getRepository('MyPlaylistAppBundle:Playlist');
-
-        // On récupère l'entité correspondant à l'id $id
-        $playlist = $repository->find($id);
+        // On récupère la playlist passer en parametre
+        $playlist = $this->getDoctrine()
+                         ->getManager()
+                         ->getRepository('MyPlaylistAppBundle:Playlist')
+                         ->find($id);
 
         // Ou null si aucune playlist n'a été trouvé avec l'id $id
         if($playlist === null)
