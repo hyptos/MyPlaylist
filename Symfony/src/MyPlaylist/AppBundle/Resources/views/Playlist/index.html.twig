@@ -3,5 +3,13 @@
 {% block title %}{{ parent() }} - Index{% endblock %}
 
 {% block body %}
-    Accueil page playlist.
+	<h3>Accueil</h3>
+  	<ul>
+  	{% for value in playlist %}
+    	<li><a href="http://localhost/Symfony/web/app_dev.php/playlist/view/{{ value.id }}" >{{ value.name }}</a></li>
+  	{% else %}
+    	<li>Pas de playlist trouvé.</li>
+  	{% endfor %}
+</ul>
+
 {% endblock %}

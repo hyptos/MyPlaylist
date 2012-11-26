@@ -48,12 +48,20 @@
                 <li class="active"><a href="{{ path('MyPlaylist_home') }}">Home</a></li>
                 <li class="dropdown"><a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Playlist <b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <li><a tabindex="-1" href="{{ path('MyPlaylist_viewPlaylist') }}">Mes Playlists</a></li>
                         <li><a tabindex="-1" href="{{ path('MyPlaylist_viewAddPlaylist') }}">Ajouter</a></li>
                         <li><a tabindex="-1" href="{{ path('MyPlaylist_viewEditPlaylist') }}">Modifier</a></li>
                         <li><a tabindex="-1" href="{{ path('MyPlaylist_viewDelPlaylist') }}">Supprimer</a></li>
                     </ul>
                 </li>                    
                 <li><a href="{{ path('MyPlaylist_search') }}">Rechercher</a></li>
+                <li class="dropdown"><a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Musiques <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a tabindex="-1" href="{{ path('MyPlaylist_addSong') }}">Ajouter</a></li>
+                        <li><a tabindex="-1" href="{{ path('MyPlaylist_editSong') }}">Modifier</a></li>
+                        <li><a tabindex="-1" href="{{ path('MyPlaylist_delSong') }}">Supprimer</a></li>
+                    </ul>
+                </li>        
                 <li><a href="{{ path('MyPlaylist_song') }}">Musiques</a></li>
                 <li><a href="{{ path('MyPlaylist_about') }}">A Propos</a></li>
             </ul>
@@ -62,21 +70,8 @@
       </div>
     </div>
 
-    <hr><hr>
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Musiques</li>
-                <li><a href="{{ path('MyPlaylist_addSong') }}">Ajouter une chanson</a></li>
-                <li><a href="{{ path('MyPlaylist_editSong') }}">Modifier une chanson</a></li>
-                <li><a href="{{ path('MyPlaylist_delSong') }}">Supprimer une chanson</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
+<hr><hr>
+        <div class="span12">
           <div class="hero-unit">
                     {% block body %}
                     {% endblock %}           
@@ -84,9 +79,8 @@
         </div><!--/span-->
       </div><!--/row-->
 
-      <hr>
 
-      <footer>
+      <footer class="span12">
         <p>&copy; MyPlaylist 2012</p>
       </footer>
 

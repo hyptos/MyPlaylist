@@ -10,14 +10,20 @@ class PlaylistController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('MyPlaylistAppBundle:Playlist:index.html.twig');
+        //Affichage des playlists disponible
+        // On récupère toute la table Playlist
+        $playlist = $this->getDoctrine()
+                         ->getManager()
+                         ->getRepository('MyPlaylistAppBundle:Playlist')
+                         ->findAll();
+
+        return $this->render('MyPlaylistAppBundle:Playlist:index.html.twig', array('playlist'   => $playlist ));
+        
     }
 
 
     public function viewPlaylistAction(Playlist $playlist)
-    {
-        // Récupérons le titre de la playlist.
-        $playlist->getName();        
+    {    
         return $this->render('MyPlaylistAppBundle:Playlist:viewPlaylist.html.twig', array('playlist' => $playlist));
     }
 
@@ -41,46 +47,7 @@ class PlaylistController extends Controller
         return $this->render('MyPlaylistAppBundle:Playlist:viewEditPlaylist.html.twig', array('playlist' => $playlist));
     }
 
-    public function viewDelPlaylistAction()
-    {
-         $playlist = new Playlist;
-
-        // J'ai raccourci cette partie, car plus rapide à écrire !
-        $form = $this->createFormBuilder($playlist)
-            ->add('name','entity', array(
-                                                'class'     => 'MyPlaylistAppBundle:Playlist',
-                                                'property'  => 'name',
-                                                'required'  => false))
-            ->getForm();
-            
-
-        // On récupère la requête.
-        $request = $this->get('request');
-
-        // On vérifie qu'elle est de type « POST ».
-        if( $request->getMethod() == 'POST' )
-        {
-            // On fait le lien Requête <-> Formulaire.
-            $form->bind($request);
-
-            // On vérifie que les valeurs rentrées sont correctes.
-            // (Nous verrons la validation des objets en détail plus bas dans ce chapitre.)
-            if( $form->isValid() )
-            {
-                // On l'enregistre notre objet $article dans la base de données.
-                $em = $this->getDoctrine()->getEntityManager();
-                $em->remove($playlist);
-                $em->flush();
-
-                // On redirige vers la page de visualisation de la playlist nouvellement créé
-             return new Response("Affichage de la playlist d'id : ".$playlist->getId().", avec le nom : ".$playlist->getName());
-            }
-        }
-
-        return $this->render('MyPlaylistAppBundle:Playlist:viewDelPlaylist.html.twig', array(
-            'form' => $form->createView(),
-        ));
-    }
+    
 
     public function viewSlugAction($slug,$annee,$format)
     {
@@ -131,54 +98,108 @@ class PlaylistController extends Controller
     {
     	//Permet de modifier une playlist
                
-        // On récupère la playlist passer en parametre
-        $playlist = $this->getDoctrine()
-                         ->getManager()
-                         ->getRepository('MyPlaylistAppBundle:Playlist')
-                         ->find($id);
-
-        // Ou null si aucune playlist n'a été trouvé avec l'id $id
-        if($playlist === null)
-        {
-            throw $this->createNotFoundException('Playlist[id='.$id.'] inexistant.');
-        }
-
-        //Ici on doit modifier la playlist, exemple : changer son nom
-        $playlist->setName("Truc");
-
-
-        // On récupére l'EntityManager
-        $em = $this->getDoctrine()->getManager();
-        $em->refresh($playlist);
-        $em->flush();
-
-        return $this->render('MyPlaylistAppBundle:Playlist:edit.html.twig', array('playlist' => $playlist));
-    }
-
-    public function delAction(Playlist $playlist)
     {
-    	//Permet de supprimer une chanson
-               
-        // On récupère la playlist passer en parametre
-        $playlist = $this->getDoctrine()
+         $playlist = new Playlist;
+
+        // On crée le formulaire à partir de l'entité Playlist
+        $form = $this->createFormBuilder($playlist)
+            ->add('name','entity', array(
+                                                'class'     => 'MyPlaylistAppBundle:Playlist',
+                                                'property'  => 'name',
+                                                'required'  => false))
+            ->getForm();
+            
+
+        // On récupère la requête.
+        $request = $this->get('request');
+
+        // On vérifie qu'elle est de type « POST ».
+        if( $request->getMethod() == 'POST' )
+        {
+            // On fait le lien Requête <-> Formulaire.
+            $form->bind($request);
+
+            // On vérifie que les valeurs rentrées sont correctes.
+            // (Nous verrons la validation des objets en détail plus bas dans ce chapitre.)
+            if( $form->isValid() )
+            {
+                // On récupère les données de notre formulaire/
+                $name = $form["name"]->getData();
+                $playlist = $this->getDoctrine()
                          ->getManager()
                          ->getRepository('MyPlaylistAppBundle:Playlist')
-                         ->find($id);
+                         ->find($name->getId()); 
 
-        // Ou null si aucune playlist n'a été trouvé avec l'id $id
-        if($playlist === null)
-        {
-            throw $this->createNotFoundException('Playlist[id='.$id.'] inexistant.');
+                //On affecte l'objet recupéré à notre objet courant
+
+
+                //On supprime notre objet en BDD
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->refresh($playlist);
+                $em->flush();
+
+                // On redirige vers l'accueil
+              return $this->render('MyPlaylistAppBundle:Playlist:edit.html.twig');
+            }
         }
 
-
-        // On récupére l'EntityManager
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($playlist);
-        $em->flush();
-
-        return $this->render('MyPlaylistAppBundle:Playlist:del.html.twig', array('playlist' => $playlist));
+        return $this->render('MyPlaylistAppBundle:Playlist:viewEditPlaylist.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
+    }
+
+    public function viewDelPlaylistAction()
+    {
+         $playlist = new Playlist;
+
+        // On crée le formulaire à partir de l'entité Playlist
+        $form = $this->createFormBuilder($playlist)
+            ->add('name','entity', array(
+                                                'class'     => 'MyPlaylistAppBundle:Playlist',
+                                                'property'  => 'name',
+                                                'required'  => false))
+            ->getForm();
+            
+
+        // On récupère la requête.
+        $request = $this->get('request');
+
+        // On vérifie qu'elle est de type « POST ».
+        if( $request->getMethod() == 'POST' )
+        {
+            // On fait le lien Requête <-> Formulaire.
+            $form->bind($request);
+
+            // On vérifie que les valeurs rentrées sont correctes.
+            // (Nous verrons la validation des objets en détail plus bas dans ce chapitre.)
+            if( $form->isValid() )
+            {
+                // On récupère les données de notre formulaire/
+                $name = $form["name"]->getData();
+                $playlist = $this->getDoctrine()
+                         ->getManager()
+                         ->getRepository('MyPlaylistAppBundle:Playlist')
+                         ->find($name->getId()); 
+
+                //On affecte l'objet recupéré à notre objet courant
+
+
+                //On supprime notre objet en BDD
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->remove($playlist);
+                $em->flush();
+
+                // On redirige vers l'accueil
+              return $this->render('MyPlaylistAppBundle:Playlist:del.html.twig');
+            }
+        }
+
+        return $this->render('MyPlaylistAppBundle:Playlist:viewDelPlaylist.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
 }
 
 ?>
