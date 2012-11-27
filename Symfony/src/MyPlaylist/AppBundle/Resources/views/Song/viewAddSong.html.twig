@@ -1,0 +1,13 @@
+{% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Ajout{% endblock %}
+
+{% block body %}    
+<div class="well">
+<h3>Ajout d'une nouvelle musique o/</h3>
+    <form action="{{ path('MyPlaylist_viewAddSong') }}" method="post" {{ form_enctype(form) }}>
+    	{{ form_widget(form) }}
+    	<input type="submit" class="btn btn-primary" />
+    </form>
+</div>
+{% endblock %}

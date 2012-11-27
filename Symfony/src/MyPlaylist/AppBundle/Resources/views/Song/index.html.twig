@@ -3,5 +3,12 @@
 {% block title %}{{ parent() }} - Musiques{% endblock %}
 
 {% block body %}
-     Il s'agit de la vue gérant les musiques.
+    <h3>Accueil</h3>
+  	<ul>
+  	{% for value in song %}
+    	<li><a href="http://localhost/Symfony/web/app_dev.php/song/view/{{ value.id }}" >{{ value.title }}</a></li>
+  	{% else %}
+    	<li>Pas de Musique(s) trouvé.</li>
+  	{% endfor %}
+</ul>
 {% endblock %}

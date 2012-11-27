@@ -1,0 +1,12 @@
+{% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Modification de votre Musique{% endblock %}
+
+{% block body %}
+    Choix de la Musique à modifier :
+    <ul>
+  		{% for value in song %}
+    		<li><a href="http://localhost/Symfony/web/app_dev.php/song/edit/{{ value.id }}">{{ value.title }}">{{ value.title }}</a></li>
+  		{% endfor %}
+  	</ul>
+{% endblock %}

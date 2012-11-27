@@ -53,18 +53,24 @@ MyPlaylist_view_slugPlaylist:
         format: html|xml
 
 #PARTIE POUR LES MUSIQUES
-MyPlaylist_song:
+MyPlaylist_viewSong:
     pattern:   /song
     defaults:  { _controller: MyPlaylistAppBundle:Song:index }
 
-MyPlaylist_addSong:
+MyPlaylist_viewSongId:
+    pattern:   /song/view/{id}
+    defaults:  { _controller: MyPlaylistAppBundle:Song:ViewSong }
+    requirements:
+        id:  \d+
+
+MyPlaylist_viewAddSong:
     pattern:   /song/add
-    defaults:  { _controller: MyPlaylistAppBundle:Song:add }
+    defaults:  { _controller: MyPlaylistAppBundle:Song:viewAdd } 
 
-MyPlaylist_editSong:
+MyPlaylist_viewEditSong:
     pattern:   /song/edit
-    defaults:  { _controller: MyPlaylistAppBundle:Song:edit }
+    defaults:  { _controller: MyPlaylistAppBundle:Song:viewEditSong }
 
-MyPlaylist_delSong:
+MyPlaylist_viewDelSong:
     pattern:   /song/del
-    defaults:  { _controller: MyPlaylistAppBundle:Song:del }
+    defaults:  { _controller: MyPlaylistAppBundle:Song:viewDelSong }
