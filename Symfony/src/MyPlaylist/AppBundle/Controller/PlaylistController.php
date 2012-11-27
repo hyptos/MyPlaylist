@@ -26,28 +26,7 @@ class PlaylistController extends Controller
     {    
         return $this->render('MyPlaylistAppBundle:Playlist:viewPlaylist.html.twig', array('playlist' => $playlist));
     }
-
-    public function viewEditPlaylistAction()
-    {
-        //Affiche toute les playlist disponible
-        // On récupère toute la table Playlist
-        $playlist = $this->getDoctrine()
-                         ->getManager()
-                         ->getRepository('MyPlaylistAppBundle:Playlist')
-                         ->findAll();
-
-        // $playlist est donc une instance de de l'entité Playlist
-
-        // Ou null si aucune playlist n'a été trouvé avec l'id $id
-        if($playlist === null)
-        {
-            throw $this->createNotFoundException('Playlist[id='.$id.'] inexistant.');
-        }
-        
-        return $this->render('MyPlaylistAppBundle:Playlist:viewEditPlaylist.html.twig', array('playlist' => $playlist));
-    }
-
-    
+   
 
     public function viewSlugAction($slug,$annee,$format)
     {
@@ -93,21 +72,44 @@ class PlaylistController extends Controller
         ));
     }
 
+    public function viewEditPlaylistAction()
+    {
+        //Affiche toute les playlist disponible
+        // On récupère toute la table Playlist
+        $playlist = $this->getDoctrine()
+                         ->getManager()
+                         ->getRepository('MyPlaylistAppBundle:Playlist')
+                         ->findAll();
 
-    public function editAction(Playlist $playlist)
+        // $playlist est donc une instance de de l'entité Playlist
+
+        // Ou null si aucune playlist n'a été trouvé avec l'id $id
+        if($playlist === null)
+        {
+            throw $this->createNotFoundException('Playlist[id='.$id.'] inexistant.');
+        }
+        
+        return $this->render('MyPlaylistAppBundle:Playlist:viewEditPlaylist.html.twig', array('playlist' => $playlist));
+    }
+
+    public function editPlaylistAction(Playlist $playlist)
     {
     	//Permet de modifier une playlist
                
     {
-         $playlist = new Playlist;
+         $playlist = $this  ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Playlist')
+                            ->find($playlist->getId()); 
 
         // On crée le formulaire à partir de l'entité Playlist
-        $form = $this->createFormBuilder($playlist)
-            ->add('name','entity', array(
-                                                'class'     => 'MyPlaylistAppBundle:Playlist',
-                                                'property'  => 'name',
-                                                'required'  => false))
-            ->getForm();
+        $form   = $this->createFormBuilder($playlist)
+                ->add('name','text', array(
+                                        'attr' => array(
+                                        'placeholder' => $playlist->getName(),
+                                        'value' => '',
+                                            )))
+                ->getForm();
             
 
         // On récupère la requête.
@@ -125,26 +127,21 @@ class PlaylistController extends Controller
             {
                 // On récupère les données de notre formulaire/
                 $name = $form["name"]->getData();
-                $playlist = $this->getDoctrine()
-                         ->getManager()
-                         ->getRepository('MyPlaylistAppBundle:Playlist')
-                         ->find($name->getId()); 
+                $playlist->setName($name);
 
-                //On affecte l'objet recupéré à notre objet courant
-
-
-                //On supprime notre objet en BDD
+                //On modifie notre objet en BDD
                 $em = $this->getDoctrine()->getEntityManager();
-                $em->refresh($playlist);
+                $em->persist($playlist);
                 $em->flush();
 
-                // On redirige vers l'accueil
-              return $this->render('MyPlaylistAppBundle:Playlist:edit.html.twig');
+                // On redirige vers l'affichage de la playlist
+              return $this->redirect($this->generateUrl('MyPlaylist_viewPlaylistId', array('id' => $playlist->getId())));
             }
         }
 
-        return $this->render('MyPlaylistAppBundle:Playlist:viewEditPlaylist.html.twig', array(
-            'form' => $form->createView(),
+        return $this->render('MyPlaylistAppBundle:Playlist:viewEdit.html.twig', array(
+            'form'      => $form->createView(),
+            'playlist'  => $playlist,
         ));
     }
     }

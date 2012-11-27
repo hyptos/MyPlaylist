@@ -3,10 +3,10 @@
 {% block title %}{{ parent() }} - Modification de votre playlist{% endblock %}
 
 {% block body %}
-    Liste deroulante des playliste pour la modification.
-    <select>
+    Choix de la playlist à modifier :
+    <ul>
   		{% for value in playlist %}
-    		<option value="{{ value.id }}">{{ value.name }}</option>
+    		<li><a href="http://localhost/Symfony/web/app_dev.php/playlist/edit/{{ value.id }}">{{ value.name }}</a></li>
   		{% endfor %}
-	</select>
+  	</ul>
 {% endblock %}

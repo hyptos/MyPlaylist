@@ -39,6 +39,12 @@ MyPlaylist_viewEditPlaylist:
     pattern:   /playlist/edit
     defaults:  { _controller: MyPlaylistAppBundle:Playlist:viewEditPlaylist }
 
+MyPlaylist_editPlaylist:
+    pattern:   /playlist/edit/{id}
+    defaults:  { _controller: MyPlaylistAppBundle:Playlist:editPlaylist }
+    requirements:
+        id:  \d+
+
 MyPlaylist_view_slugPlaylist:
     pattern:   /playlist/{annee}/{slug}.{format}
     defaults:  { _controller: MyPlaylistAppBundle:Playlist:viewSlug, format: html }
