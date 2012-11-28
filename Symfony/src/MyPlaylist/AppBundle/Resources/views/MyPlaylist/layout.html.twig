@@ -63,6 +63,14 @@
                         <li><a tabindex="-1" href="{{ path('MyPlaylist_viewDelSong') }}">Supprimer</a></li>
                     </ul>
                 </li>        
+                <li class="dropdown"><a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Albums <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a tabindex="-1" href="{{ path('MyPlaylist_viewAlbum') }}">Albums</a></li>
+                        <li><a tabindex="-1" href="{{ path('MyPlaylist_viewAddAlbum') }}">Ajouter</a></li>
+                        <li><a tabindex="-1" href="{{ path('MyPlaylist_viewEditAlbum') }}">Modifier</a></li>
+                        <li><a tabindex="-1" href="{{ path('MyPlaylist_viewDelAlbum') }}">Supprimer</a></li>
+                    </ul>
+                </li>    
                 <li><a href="{{ path('MyPlaylist_about') }}">A Propos</a></li>
             </ul>
           </div><!--/.nav-collapse -->

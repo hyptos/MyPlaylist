@@ -1,0 +1,14 @@
+{% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Modification de votre Musique{% endblock %}
+
+{% block body %}
+    <h3>Choix de l'album à modifier : </h3>
+  	<ul>
+  	{% for value in album %}
+    	<li><a href="http://localhost/Symfony/web/app_dev.php/album/edit/{{ value.id }}" >{{ value.title }}</a></li>
+  	{% else %}
+    	<li>Pas dAlbum(s) trouvé.</li>
+  	{% endfor %}
+</ul>
+{% endblock %}

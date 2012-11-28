@@ -74,3 +74,32 @@ MyPlaylist_viewEditSong:
 MyPlaylist_viewDelSong:
     pattern:   /song/del
     defaults:  { _controller: MyPlaylistAppBundle:Song:viewDelSong }
+
+#PARTIE POUR LES ALBUMS
+MyPlaylist_viewAlbum:
+    pattern:   /album
+    defaults:  { _controller: MyPlaylistAppBundle:Album:index }
+
+MyPlaylist_viewAlbumId:
+    pattern:   /album/view/{id}
+    defaults:  { _controller: MyPlaylistAppBundle:Album:ViewAlbum }
+    requirements:
+        id:  \d+
+
+MyPlaylist_viewAddAlbum:
+    pattern:   /album/add
+    defaults:  { _controller: MyPlaylistAppBundle:Album:viewAdd } 
+
+MyPlaylist_viewEditAlbum:
+    pattern:   /album/edit
+    defaults:  { _controller: MyPlaylistAppBundle:Album:viewEdit }
+
+MyPlaylist_editAlbum:
+    pattern:   /album/edit/{id}
+    defaults:  { _controller: MyPlaylistAppBundle:Album:editAlbum }
+    requirements:
+        id:  \d+
+
+MyPlaylist_viewDelAlbum:
+    pattern:   /album/del
+    defaults:  { _controller: MyPlaylistAppBundle:Album:viewDel }

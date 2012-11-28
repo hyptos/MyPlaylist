@@ -1,0 +1,12 @@
+{% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Supprimer{% endblock %}
+
+{% block body %}
+    Liste déroulante des Musiques pour en supprimer une.
+    <form action="{{ path('MyPlaylist_viewDelAlbum') }}" method="post" {{ form_enctype(form) }}>
+    	{{ form_widget(form) }}
+    	<input type="submit" class="btn btn-primary" />
+    </form>
+
+{% endblock %}

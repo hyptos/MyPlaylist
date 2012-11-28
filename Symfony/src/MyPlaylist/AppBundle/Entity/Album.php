@@ -29,19 +29,18 @@ class Album
     private $title;
 
     /**
-     * @var \DateTime $date_production
+     * @var \DateTime $dateProduction
      *
      * @ORM\Column(name="date_production", type="date")
      */
     private $date_production;
 
     /**
-     * @var \DateTime $date_insert
+     * @var \DateTime $dateInsert
      *
      * @ORM\Column(name="date_insert", type="date")
      */
     private $date_insert;
-
 
     /**
      * Get id

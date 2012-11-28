@@ -1,0 +1,8 @@
+{% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+{% block body %}
+    Titre de la musique : {{ album.title }} <br>
+    Date de production : {{ album.dateProduction|date('d-m-Y') }}<br> 
+{% endblock %}

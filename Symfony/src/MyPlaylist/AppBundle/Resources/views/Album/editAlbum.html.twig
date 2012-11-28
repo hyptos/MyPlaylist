@@ -1,0 +1,11 @@
+{% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Modification de votre Musique{% endblock %}
+
+{% block body %}
+    Modification de l'album :
+	<form action="http://localhost/Symfony/web/app_dev.php/album/edit/{{ album.id }}" method="post" {{ form_enctype(form) }}>
+    	{{ form_widget(form) }}
+    	<input type="submit" class="btn btn-primary" />
+    </form>
+{% endblock %}
