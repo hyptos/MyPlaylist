@@ -1,10 +1,10 @@
 {% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
 
-{% block title %}{{ parent() }} - Modification de votre playlist{% endblock %}
+{% block title %}{{ parent() }} - Modification de votre Musique{% endblock %}
 
 {% block body %}
-    Modification de la playlist :
-	<form action="http://localhost/Symfony/web/app_dev.php/playlist/edit/{{ playlist.id }}" method="post" {{ form_enctype(form) }}>
+    Modification de la Musique :
+	<form action="http://localhost/Symfony/web/app_dev.php/song/edit/{{ song.id }}" method="post" {{ form_enctype(form) }}>
     	{{ form_widget(form) }}
     	<input type="submit" class="btn btn-primary" />
     </form>

@@ -59,13 +59,19 @@ MyPlaylist_viewSong:
 
 MyPlaylist_viewSongId:
     pattern:   /song/view/{id}
-    defaults:  { _controller: MyPlaylistAppBundle:Song:ViewSong }
+    defaults:  { _controller: MyPlaylistAppBundle:Song:viewSong }
     requirements:
         id:  \d+
 
 MyPlaylist_viewAddSong:
     pattern:   /song/add
     defaults:  { _controller: MyPlaylistAppBundle:Song:viewAdd } 
+
+MyPlaylist_editSong:
+    pattern:   /song/edit/{id}
+    defaults:  { _controller: MyPlaylistAppBundle:Song:editSong }
+    requirements:
+        id:  \d+
 
 MyPlaylist_viewEditSong:
     pattern:   /song/edit
