@@ -24,8 +24,22 @@
     		<td><a href="http://localhost/Symfony/web/app_dev.php/song/view/{{ value.id }}" >{{ value.title }}</a></td>
     		<td>{{ value.length }}</td>
     		<td>{{ value.filename }}</td>
-    		<td><input type="submit" class="btn" value="Ajouter" /></td>
-    	</tr>>
+    		<td>
+                <div class="btn-group">
+                  <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+                    Action
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    {% for valuePl in playlist %}                    
+                        <li><a href="http://localhost/Symfony/web/app_dev.php/song/{{value.id}}/addToPlaylist/{{ valuePl.id }}" >{{ valuePl.name }}</a></li>
+                    {% else %}
+                        <p>Veuillez creer une playlist</p>
+                    {% endfor %}
+                  </ul>
+                </div>
+            </td>
+    	</tr>
   	{% else %}
   	    	<p>Pas de Musique(s) trouvé.</p>
   	{% endfor %}

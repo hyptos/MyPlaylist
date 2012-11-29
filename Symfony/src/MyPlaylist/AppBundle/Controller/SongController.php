@@ -19,7 +19,13 @@ class SongController extends Controller
                          ->getRepository('MyPlaylistAppBundle:Song')
                          ->findAll();
 
-        return $this->render('MyPlaylistAppBundle:Song:index.html.twig', array('song' => $song ));
+        $playlist = $this->getDoctrine()
+                         ->getManager()
+                         ->getRepository('MyPlaylistAppBundle:Playlist')
+                         ->findAll();
+
+        return $this->render('MyPlaylistAppBundle:Song:index.html.twig', array('song'     =>  $song,
+                                                                               'playlist' =>  $playlist ));
     }
 
      public function viewSongAction(Song $song)
@@ -193,6 +199,76 @@ class SongController extends Controller
         return $this->render('MyPlaylistAppBundle:Song:viewDelSong.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+     /******************** Permet d'ajouter une chanson à une playlist ********************/
+    public function addToPlaylistAction($idSong,$idPlaylist)
+    {
+
+         $song      = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Song')
+                            ->find($idSong); 
+                  
+        $playlist   = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Playlist')
+                            ->find($idPlaylist);                    
+
+        // On récupère la requête.
+        $request = $this->get('request');
+
+        // On vérifie qu'elle est de type « POST ».
+        if( $request->getMethod() == 'GET' )
+        {
+            // On fait le lien chanson <-> Playlist.
+            $playlist->addSong($song);
+
+
+            // On l'enregistre dans la BDD
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($song);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de la playlist nouvellement créé
+            return $this->redirect($this->generateUrl('MyPlaylist_viewPlaylistId', array('id' => $playlist->getId())));
+            }        
+
+        return $this->render('MyPlaylistAppBundle:Song:song.html.twig');
+    }
+
+    public function delToPlaylistAction($idSong,$idPlaylist)
+    {
+
+         $song      = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Song')
+                            ->find($idSong); 
+                  
+        $playlist   = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Playlist')
+                            ->find($idPlaylist);                    
+
+        // On récupère la requête.
+        $request = $this->get('request');
+
+        // On vérifie qu'elle est de type « POST ».
+        if( $request->getMethod() == 'GET' )
+        {
+            // On supprime le lien chanson <-> Playlist.
+            $playlist->removeSong($song);
+
+                // On l'enregistre dans la BDD
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($song);
+                $em->flush();
+
+                // On redirige vers la page de visualisation de la playlist 
+                return $this->redirect($this->generateUrl('MyPlaylist_viewPlaylistId', array('id' => $playlist->getId())));
+            }        
+
+        return $this->render('MyPlaylistAppBundle:Song:song.html.twig');
     }
   
 }

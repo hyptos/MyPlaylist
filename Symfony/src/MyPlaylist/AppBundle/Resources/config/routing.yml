@@ -63,6 +63,20 @@ MyPlaylist_viewSongId:
     requirements:
         id:  \d+
 
+MyPlaylist_addSongToPlaylist:
+    pattern:   /song/{idSong}/addToPlaylist/{idPlaylist}
+    defaults:  { _controller: MyPlaylistAppBundle:Song:addToPlaylist }
+    requirements:
+        idSong:  \d+  
+        idPlaylist:  \d+  
+
+MyPlaylist_delSongToPlaylist:
+    pattern:   /song/{idSong}/delToPlaylist/{idPlaylist}
+    defaults:  { _controller: MyPlaylistAppBundle:Song:delToPlaylist }
+    requirements:
+        idSong:  \d+  
+        idPlaylist:  \d+          
+
 MyPlaylist_viewAddSong:
     pattern:   /song/add
     defaults:  { _controller: MyPlaylistAppBundle:Song:viewAdd } 

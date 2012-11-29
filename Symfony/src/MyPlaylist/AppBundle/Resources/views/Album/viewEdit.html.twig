@@ -3,6 +3,9 @@
 {% block title %}{{ parent() }} - Modification de votre Musique{% endblock %}
 
 {% block body %}
+{% if album is empty %}
+		<p>Veuillez ajouter des albums. <a href="http://localhost/Symfony/web/app_dev.php/album/add">">Ajout d'un Album</a></p>
+	{% else %}
     <h3>Choix de l'album à modifier : </h3>
   	<ul>
   	{% for value in album %}
@@ -11,4 +14,5 @@
     	<li>Pas dAlbum(s) trouvé.</li>
   	{% endfor %}
 </ul>
+{% endif %}
 {% endblock %}

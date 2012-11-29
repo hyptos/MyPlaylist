@@ -3,10 +3,14 @@
 {% block title %}{{ parent() }} - Modification de votre playlist{% endblock %}
 
 {% block body %}
+	{% if playlist is empty %}
+		<p>Veuillez creer des playlist. <a href="http://localhost/Symfony/web/app_dev.php/playlist/add">">Creation de Playlist</a></p>
+	{% else %}
     Choix de la playlist à modifier :
     <ul>
   		{% for value in playlist %}
     		<li><a href="http://localhost/Symfony/web/app_dev.php/playlist/edit/{{ value.id }}">{{ value.name }}</a></li>
   		{% endfor %}
   	</ul>
+  	{% endif %}
 {% endblock %}

@@ -4,4 +4,29 @@
 
 {% block body %}
     Affichage de la playlist {{ playlist.name }}
+    {% if playlist.songs is empty  %}
+    	<p>
+    		<a href="http://localhost/Symfony/web/app_dev.php/song">Ajouter des chansons à votre playlist ?</a>
+    	</p>
+    {% else %}
+    <table class="table table-striped" >
+    <tr>
+    	<th>
+    		Titre
+    	</th>
+    	<th>
+    		Suppression
+    	</th>
+    </tr>
+
+        {% for song in playlist.songs %}
+                <tr>
+    				<td><a href="http://localhost/Symfony/web/app_dev.php/song/view/{{ song.id }}">{{song.title}}</a></td>
+    				<td><a href="http://localhost/Symfony/web/app_dev.php/song/{{song.id}}/delToPlaylist/{{ playlist.id }}" ><button class="btn btn-danger">&times;</button></a></td>
+    			</tr>
+            {% if not loop.last %} - {% endif %}
+        {% endfor %}
+        </table>
+        {% endif %}
 {% endblock %}
+

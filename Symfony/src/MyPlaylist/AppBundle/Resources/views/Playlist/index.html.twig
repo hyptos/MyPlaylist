@@ -4,6 +4,9 @@
 
 {% block body %}
 	<h3>Accueil</h3>
+	{% if playlist is empty %}
+		<p>Veuillez creer des playlist. <a href="http://localhost/Symfony/web/app_dev.php/playlist/add">">Creation de Playlist</a></p>
+	{% else %}
   	<ul>
   	{% for value in playlist %}
     	<li><a href="http://localhost/Symfony/web/app_dev.php/playlist/view/{{ value.id }}" >{{ value.name }}</a></li>
@@ -11,5 +14,6 @@
     	<li>Pas de playlist trouvé.</li>
   	{% endfor %}
 </ul>
+{% endif %}
 
 {% endblock %}

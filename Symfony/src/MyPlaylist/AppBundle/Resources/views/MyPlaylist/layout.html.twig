@@ -53,8 +53,7 @@
                         <li><a tabindex="-1" href="{{ path('MyPlaylist_viewEditPlaylist') }}">Modifier</a></li>
                         <li><a tabindex="-1" href="{{ path('MyPlaylist_viewDelPlaylist') }}">Supprimer</a></li>
                     </ul>
-                </li>                    
-                <li><a href="{{ path('MyPlaylist_search') }}">Rechercher</a></li>
+                </li>                
                 <li class="dropdown"><a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Musiques <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a tabindex="-1" href="{{ path('MyPlaylist_viewSong') }}">Musiques</a></li>
@@ -71,6 +70,7 @@
                         <li><a tabindex="-1" href="{{ path('MyPlaylist_viewDelAlbum') }}">Supprimer</a></li>
                     </ul>
                 </li>    
+                <li><a href="{{ path('MyPlaylist_search') }}">Rechercher</a></li>
                 <li><a href="{{ path('MyPlaylist_about') }}">A Propos</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -89,7 +89,9 @@
 
 
       <footer class="span12">
-        <p>&copy; MyPlaylist 2012</p>
+          {% block footer %}
+                &copy; Copyright 2012 Dorian Garcia & Antoine Martin.
+            {% endblock %}        
       </footer>
 
     </div><!--/.fluid-container-->

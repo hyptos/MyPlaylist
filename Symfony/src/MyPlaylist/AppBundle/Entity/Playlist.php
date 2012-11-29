@@ -28,6 +28,11 @@ class Playlist
      */
     private $name;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="MyPlaylist\AppBundle\Entity\Song", cascade={"persist"})
+     */
+    private $songs; //songs avec un "s" car il ya plusieurs chanson pour une playlist
+
     public function __construct()
     {
         $this->name = "";
@@ -66,4 +71,37 @@ class Playlist
         return $this->name;
     }
 
+
+    /**
+     * Add songs
+     *
+     * @param MyPlaylist\AppBundle\Entity\Song $songs
+     * @return Playlist
+     */
+    public function addSong(\MyPlaylist\AppBundle\Entity\Song $songs)
+    {
+        $this->songs[] = $songs;
+    
+        return $this;
+    }
+
+    /**
+     * Remove songs
+     *
+     * @param MyPlaylist\AppBundle\Entity\Song $songs
+     */
+    public function removeSong(\MyPlaylist\AppBundle\Entity\Song $songs)
+    {
+        $this->songs->removeElement($songs);
+    }
+
+    /**
+     * Get songs
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getSongs()
+    {
+        return $this->songs;
+    }
 }
