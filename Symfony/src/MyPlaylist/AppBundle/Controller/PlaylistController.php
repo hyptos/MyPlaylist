@@ -41,7 +41,7 @@ class PlaylistController extends Controller
 
         // J'ai raccourci cette partie, car plus rapide à écrire !
         $form = $this->createFormBuilder($playlist)
-            ->add('name',       'text')
+            ->add('name',       'text',array('required' =>false))
             ->getForm();
 
         // On récupère la requête.
@@ -63,7 +63,7 @@ class PlaylistController extends Controller
                 $em->flush();
 
                 // On redirige vers la page de visualisation de la playlist nouvellement créé
-            return $this->redirect($this->generateUrl('MyPlaylist_viewPlaylistId', array('id' => $playlist->getId())));
+                return new response('OK');
             }
         }
 
@@ -106,9 +106,9 @@ class PlaylistController extends Controller
         $form   = $this->createFormBuilder($playlist)
                 ->add('name','text', array(
                                         'attr' => array(
-                                        'placeholder' => $playlist->getName(),
-                                        'value' => '',
-                                            )))
+                                                        'placeholder' => $playlist->getName(),
+                                                        'value' => ''),
+                                        'required' =>   false))
                 ->getForm();
             
 
@@ -135,7 +135,7 @@ class PlaylistController extends Controller
                 $em->flush();
 
                 // On redirige vers l'affichage de la playlist
-              return $this->redirect($this->generateUrl('MyPlaylist_viewPlaylistId', array('id' => $playlist->getId())));
+              return new response('OK');
             }
         }
 

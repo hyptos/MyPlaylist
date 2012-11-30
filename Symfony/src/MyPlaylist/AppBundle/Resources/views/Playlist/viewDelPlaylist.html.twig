@@ -4,8 +4,29 @@
 
 {% block body %}
     List deroulante des playliste pour en supprimer une.
-    <form action="{{ path('MyPlaylist_viewDelPlaylist') }}" method="post" {{ form_enctype(form) }}>
+    <form id="form" action="{{ path('MyPlaylist_viewDelPlaylist') }}" method="post" {{ form_enctype(form) }}>
     	{{ form_widget(form) }}
     	<input type="submit" class="btn btn-primary" />
     </form>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+<script type="text/javascript">
+$(document).ready(function() {
+    // lorsque je soumets le formulaire
+    $('#form').on('submit', function() {
+ 
+        // je récupère les valeurs
+        var name = $('#form_name').val();
+ 
+        // je vérifie une première fois pour ne pas lancer la requête HTTP
+        // si je sais que mon PHP renverra une erreur
+        if(name == '') {
+            alertify.error('Les champs ne sont pas remplis');
+            return false;
+        } 
+            });
+   
+});
+</script>
 {% endblock %}

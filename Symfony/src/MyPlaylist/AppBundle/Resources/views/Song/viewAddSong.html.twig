@@ -4,7 +4,7 @@
 
 {% block body %}    
 <h3>Ajout d'une nouvelle musique o/</h3>
-    <form action="{{ path('MyPlaylist_viewAddSong') }}" method="post" {{ form_enctype(form) }}>
+    <form id="form" action="{{ path('MyPlaylist_viewAddSong') }}" method="post" {{ form_enctype(form) }}>
     	{{ form_widget(form) }}
     	<input type="submit" class="btn btn-primary" />
     </form>

@@ -5,9 +5,39 @@
 {% block body %}    
 <div class="well">
 <h3>Ajout d'une nouvelle playlist</h3>
-    <form action="{{ path('MyPlaylist_viewAddPlaylist') }}" method="post" {{ form_enctype(form) }}>
+    <form id="form" action="{{ path('MyPlaylist_viewAddPlaylist') }}" method="post" {{ form_enctype(form) }}>
     	{{ form_widget(form) }}
     	<input type="submit" class="btn btn-primary" />
     </form>
 </div>
+{% endblock %}
+{% block javascripts %}
+ {{ parent() }}
+<script type="text/javascript">
+$(document).ready(function() {
+    // lorsque je soumets le formulaire
+    $('#form').on('submit', function() {
+ 
+        // je récupère les valeurs
+        var name = $('#form_name').val();
+ 
+        // je vérifie une première fois pour ne pas lancer la requête HTTP
+        // si je sais que mon PHP renverra une erreur
+        if(name == '') {
+            alertify.error('Les champs ne sont pas remplis');
+        } else {
+            // appel Ajax
+            $.ajax({
+                url: $(this).attr('action'), // le nom du fichier indiqué dans le formulaire
+                type: $(this).attr('method'), // la méthode indiquée dans le formulaire (get ou post)
+                data: $(this).serialize(), // je sérialise les données (voir plus loin), ici les $_POST
+                success: function(html) { // je récupère la réponse du fichier PHP
+                    alertify.success('La chanson a été ajoutée'); // j'affiche cette réponse
+                }
+            });
+        }
+        return false; // j'empêche le navigateur de soumettre lui-même le formulaire
+    });
+});
+</script>
 {% endblock %}
