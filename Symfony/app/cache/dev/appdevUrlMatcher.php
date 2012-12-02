@@ -129,44 +129,104 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::indexAction',  '_route' => 'MyPlaylist_viewPlaylist',);
         }
 
-        // MyPlaylist_addPlaylist
+        // MyPlaylist_viewPlaylistId
+        if (0 === strpos($pathinfo, '/playlist/view') && preg_match('#^/playlist/view/(?<id>\\d+)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::viewPlaylistAction',)), array('_route' => 'MyPlaylist_viewPlaylistId'));
+        }
+
+        // MyPlaylist_viewDelPlaylist
+        if ($pathinfo === '/playlist/del') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::viewDelPlaylistAction',  '_route' => 'MyPlaylist_viewDelPlaylist',);
+        }
+
+        // MyPlaylist_viewAddPlaylist
         if ($pathinfo === '/playlist/add') {
-            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::addAction',  '_route' => 'MyPlaylist_addPlaylist',);
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::viewAddAction',  '_route' => 'MyPlaylist_viewAddPlaylist',);
+        }
+
+        // MyPlaylist_viewEditPlaylist
+        if ($pathinfo === '/playlist/edit') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::viewEditPlaylistAction',  '_route' => 'MyPlaylist_viewEditPlaylist',);
         }
 
         // MyPlaylist_editPlaylist
-        if ($pathinfo === '/playlist/edit') {
-            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::editAction',  '_route' => 'MyPlaylist_editPlaylist',);
-        }
-
-        // MyPlaylist_delPlaylist
-        if ($pathinfo === '/playlist/del') {
-            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::delAction',  '_route' => 'MyPlaylist_delPlaylist',);
+        if (0 === strpos($pathinfo, '/playlist/edit') && preg_match('#^/playlist/edit/(?<id>\\d+)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::editPlaylistAction',)), array('_route' => 'MyPlaylist_editPlaylist'));
         }
 
         // MyPlaylist_view_slugPlaylist
-        if (0 === strpos($pathinfo, '/playlist') && preg_match('#^/playlist/(?<annee>\\d{4})/(?<slug>[^/\\.]+)(?:\\.(?<format>html|xml))?$#s', $pathinfo, $matches)) {
+        if (0 === strpos($pathinfo, '/playlist') && preg_match('#^/playlist/(?<annee>\\d4)/(?<slug>[^/\\.]+)(?:\\.(?<format>html|xml))?$#s', $pathinfo, $matches)) {
             return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\PlaylistController::viewSlugAction',  'format' => 'html',)), array('_route' => 'MyPlaylist_view_slugPlaylist'));
         }
 
-        // MyPlaylist_song
+        // MyPlaylist_viewSong
         if ($pathinfo === '/song') {
-            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::indexAction',  '_route' => 'MyPlaylist_song',);
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::indexAction',  '_route' => 'MyPlaylist_viewSong',);
         }
 
-        // MyPlaylist_addSong
+        // MyPlaylist_viewSongId
+        if (0 === strpos($pathinfo, '/song/view') && preg_match('#^/song/view/(?<id>\\d+)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::viewSongAction',)), array('_route' => 'MyPlaylist_viewSongId'));
+        }
+
+        // MyPlaylist_addSongToPlaylist
+        if (0 === strpos($pathinfo, '/song') && preg_match('#^/song/(?<idSong>\\d+)/addToPlaylist/(?<idPlaylist>\\d+)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::addToPlaylistAction',)), array('_route' => 'MyPlaylist_addSongToPlaylist'));
+        }
+
+        // MyPlaylist_delSongToPlaylist
+        if (0 === strpos($pathinfo, '/song') && preg_match('#^/song/(?<idSong>\\d+)/delToPlaylist/(?<idPlaylist>\\d+)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::delToPlaylistAction',)), array('_route' => 'MyPlaylist_delSongToPlaylist'));
+        }
+
+        // MyPlaylist_viewAddSong
         if ($pathinfo === '/song/add') {
-            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::addAction',  '_route' => 'MyPlaylist_addSong',);
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::viewAddAction',  '_route' => 'MyPlaylist_viewAddSong',);
         }
 
         // MyPlaylist_editSong
-        if ($pathinfo === '/song/edit') {
-            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::editAction',  '_route' => 'MyPlaylist_editSong',);
+        if (0 === strpos($pathinfo, '/song/edit') && preg_match('#^/song/edit/(?<id>\\d+)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::editSongAction',)), array('_route' => 'MyPlaylist_editSong'));
         }
 
-        // MyPlaylist_delSong
+        // MyPlaylist_viewEditSong
+        if ($pathinfo === '/song/edit') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::viewEditSongAction',  '_route' => 'MyPlaylist_viewEditSong',);
+        }
+
+        // MyPlaylist_viewDelSong
         if ($pathinfo === '/song/del') {
-            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::delAction',  '_route' => 'MyPlaylist_delSong',);
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\SongController::viewDelSongAction',  '_route' => 'MyPlaylist_viewDelSong',);
+        }
+
+        // MyPlaylist_viewAlbum
+        if ($pathinfo === '/album') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\AlbumController::indexAction',  '_route' => 'MyPlaylist_viewAlbum',);
+        }
+
+        // MyPlaylist_viewAlbumId
+        if (0 === strpos($pathinfo, '/album/view') && preg_match('#^/album/view/(?<id>\\d+)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\AlbumController::ViewAlbumAction',)), array('_route' => 'MyPlaylist_viewAlbumId'));
+        }
+
+        // MyPlaylist_viewAddAlbum
+        if ($pathinfo === '/album/add') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\AlbumController::viewAddAction',  '_route' => 'MyPlaylist_viewAddAlbum',);
+        }
+
+        // MyPlaylist_viewEditAlbum
+        if ($pathinfo === '/album/edit') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\AlbumController::viewEditAction',  '_route' => 'MyPlaylist_viewEditAlbum',);
+        }
+
+        // MyPlaylist_editAlbum
+        if (0 === strpos($pathinfo, '/album/edit') && preg_match('#^/album/edit/(?<id>\\d+)$#s', $pathinfo, $matches)) {
+            return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\AlbumController::editAlbumAction',)), array('_route' => 'MyPlaylist_editAlbum'));
+        }
+
+        // MyPlaylist_viewDelAlbum
+        if ($pathinfo === '/album/del') {
+            return array (  '_controller' => 'MyPlaylist\\AppBundle\\Controller\\AlbumController::viewDelAction',  '_route' => 'MyPlaylist_viewDelAlbum',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();

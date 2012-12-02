@@ -21,7 +21,7 @@
     </tr>
   	{% for value in song %}
     	<tr>
-    		<td><a href="http://localhost/Symfony/web/app_dev.php/song/view/{{ value.id }}" >{{ value.title }}</a></td>
+    		<td><a href="{{ path('MyPlaylist_viewSongId', {"id": value.id}) }}" >{{ value.title }}</a></td>
     		<td>{{ value.length }}</td>
     		<td>{{ value.filename }}</td>
     		<td>
@@ -32,7 +32,7 @@
                   </a>
                   <ul class="dropdown-menu">
                     {% for valuePl in playlist %}                    
-                        <li><a href="http://localhost/Symfony/web/app_dev.php/song/{{value.id}}/addToPlaylist/{{ valuePl.id }}" >{{ valuePl.name }}</a></li>
+                        <li><a href="{{ path('MyPlaylist_addSongToPlaylist', {"idSong": value.id,"idPlaylist": valuePl.id }) }}" >{{ valuePl.name }}</a></li>
                     {% else %}
                         <p>Veuillez creer une playlist</p>
                     {% endfor %}

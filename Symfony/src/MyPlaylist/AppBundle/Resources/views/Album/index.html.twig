@@ -6,7 +6,7 @@
     <h3>Accueil</h3>
   	<ul>
   	{% for value in album %}
-    	<li><a href="http://localhost/Symfony/web/app_dev.php/album/view/{{ value.id }}" >{{ value.title }}</a></li>
+    	<li><a href="{{ path('MyPlaylist_viewAlbumId', {"id": value.id}) }}" >{{ value.title }}</a></li>
   	{% else %}
     	<li>Pas dAlbum(s) trouvé.</li>
   	{% endfor %}

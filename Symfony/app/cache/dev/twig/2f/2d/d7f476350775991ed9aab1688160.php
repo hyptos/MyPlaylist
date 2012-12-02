@@ -36,7 +36,7 @@ class __TwigTemplate_2f2dd7f476350775991ed9aab1688160 extends Twig_Template
     public function block_body($context, array $blocks = array())
     {
         // line 6
-        echo "   Il s'agit de la vue gérant les musiques
+        echo "   Suppression OK !
 ";
     }
 

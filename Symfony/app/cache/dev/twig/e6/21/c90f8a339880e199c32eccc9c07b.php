@@ -36,7 +36,7 @@ class __TwigTemplate_e621c90f8a339880e199c32eccc9c07b extends Twig_Template
     public function block_body($context, array $blocks = array())
     {
         // line 6
-        echo "    Section pour ajoutez une playlist.
+        echo "    Oops ! votre playlist n'a pas ete ajouter.
 ";
     }
 

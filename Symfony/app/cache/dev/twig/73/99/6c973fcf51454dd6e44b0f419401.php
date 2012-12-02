@@ -36,7 +36,7 @@ class __TwigTemplate_73996c973fcf51454dd6e44b0f419401 extends Twig_Template
     public function block_body($context, array $blocks = array())
     {
         // line 6
-        echo "    Section pour supprimez une playlist.
+        echo "    Suprression confirmé ! 
 ";
     }
 

@@ -29,14 +29,18 @@ class __TwigTemplate_e9613bf8dcfe09b62d0dea75444e92c2 extends Twig_Template
     public function block_title($context, array $blocks = array())
     {
         $this->displayParentBlock("title", $context, $blocks);
-        echo " - Index";
+        echo " - Modification de votre playlist";
     }
 
     // line 5
     public function block_body($context, array $blocks = array())
     {
         // line 6
-        echo "    Section pour modifier une playlist.
+        echo "    Votre playlist porte le nom de ";
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "playlist"), "name"), "html", null, true);
+        echo " et possède l'id ";
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, "playlist"), "Id"), "html", null, true);
+        echo "
 ";
     }
 

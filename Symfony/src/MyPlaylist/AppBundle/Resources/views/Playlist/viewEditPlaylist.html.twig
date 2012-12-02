@@ -9,7 +9,7 @@
     Choix de la playlist à modifier :
     <ul>
   		{% for value in playlist %}
-    		<li><a href="http://localhost/Symfony/web/app_dev.php/playlist/edit/{{ value.id }}">{{ value.name }}</a></li>
+    		<li><a href="{{ path('MyPlaylist_editPlaylist', {"id": value.id}) }}">{{ value.name }}</a></li>
   		{% endfor %}
   	</ul>
   	{% endif %}

@@ -4,12 +4,12 @@
 
 {% block body %}
 {% if song is empty %}
-		<p>Veuillez ajouter des chansons. <a href="http://localhost/Symfony/web/app_dev.php/song/add">">Ajout de Chanson</a></p>
+		<p>Veuillez ajouter des chansons. <a href="{{ path('MyPlaylist_viewAddSong') }}">">Ajout de Chanson</a></p>
 	{% else %}
     Choix de la Musique à modifier :
     <ul>
   		{% for value in song %}
-    		<li><a href="http://localhost/Symfony/web/app_dev.php/song/edit/{{ value.id }}">{{ value.title }}</a></li>
+    		<li><a href="{{ path('MyPlaylist_editSong', {"id": value.id}) }}">{{ value.title }}</a></li>
   		{% endfor %}
   	</ul>
 {% endif %}	

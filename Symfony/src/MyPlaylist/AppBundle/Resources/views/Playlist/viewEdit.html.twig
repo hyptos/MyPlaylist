@@ -4,7 +4,7 @@
 
 {% block body %}
     Modification de la playlist :
-	<form id="form" action="http://localhost/Symfony/web/app_dev.php/playlist/edit/{{ playlist.id }}" method="post" {{ form_enctype(form) }}>
+	<form id="form" action="{{ path('MyPlaylist_editPlaylist', {"id": playlist.id}) }}" method="post" {{ form_enctype(form) }}>
     	{{ form_widget(form) }}
     	<input type="submit" class="btn btn-primary" />
     </form>

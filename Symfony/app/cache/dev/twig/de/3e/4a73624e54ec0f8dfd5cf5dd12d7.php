@@ -40,7 +40,10 @@ class __TwigTemplate_de3e4a73624e54ec0f8dfd5cf5dd12d7 extends Twig_Template
             Ce site a été realiser dans un but pédagogique et dans le cadre d'un projet en Licence de Math/Info.
         </p>
         <p>
-            Ci-joint le MCD que nous avons utiliser : <img src=\"#\" alt=\"MCD\"/>
+            Ci-joint le MCD que nous avons utiliser : <img src=\"";
+        // line 10
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/myplaylistapp/img/mcd.png"), "html", null, true);
+        echo "\" alt=\"MCD\"/>
         </p>
         <p>
             Nous remercions machin, bidule et truc.
@@ -60,6 +63,6 @@ class __TwigTemplate_de3e4a73624e54ec0f8dfd5cf5dd12d7 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  37 => 6,  34 => 5,  27 => 3,);
+        return array (  43 => 10,  37 => 6,  34 => 5,  27 => 3,);
     }
 }

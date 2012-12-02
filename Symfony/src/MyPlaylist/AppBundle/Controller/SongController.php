@@ -1,7 +1,4 @@
 <?php
-
-// src/Sdz/BlogBundle/Controller/BlogController.php
-
 namespace MyPlaylist\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -40,10 +37,10 @@ class SongController extends Controller
         $song = new Song;
 
         $form = $this->createFormBuilder($song)
-            ->add('title',       'text')
-            ->add('length',       'text')
-            ->add('date_record',       'date')
-            ->add('filename',       'text')
+            ->add('title','text',array('required' =>false))
+            ->add('length','text',array('required' =>false))
+            ->add('date_record','date')
+            ->add('filename','text',array('required' =>false))
             ->getForm();
 
         // On récupère la requête.
@@ -57,15 +54,15 @@ class SongController extends Controller
 
             // On vérifie que les valeurs rentrées sont correctes.
             // (Nous verrons la validation des objets en détail plus bas dans ce chapitre.)
-            if( $form->isValid() )
+            if($form->isValid())
             {
                 // On l'enregistre notre objet $article dans la base de données.
                 $em = $this->getDoctrine()->getEntityManager();
                 $em->persist($song);
                 $em->flush();
 
-                // On redirige vers la page de visualisation de la playlist nouvellement créé
-                return $this->redirect($this->generateUrl('MyPlaylist_viewSongId', array('id' => $song->getId())));
+                // On envoi la reponse
+                return new Response('OK');
             }
         }
 
@@ -104,17 +101,13 @@ class SongController extends Controller
                             ->getRepository('MyPlaylistAppBundle:Song')
                             ->find($song->getId()); 
 
-        // On crée le formulaire à partir de l'entité Playlist
-        $form   = $this->createFormBuilder($song)
-                ->add('title','text', array(
-                                        'attr' => array(
-                                        'placeholder' => $song->getTitle(),
-                                        'value' => '',
-                                            )))
-                ->add('length',       'text')
-                ->add('date_record',       'date')
-                ->add('filename',       'text') 
-                ->getForm();
+        // On crée le formulaire à partir de l'entité Song
+        $form   = $this ->createFormBuilder($song)
+                        ->add('title','text',array('required' =>false))
+                        ->add('length','text',array('required' =>false))
+                        ->add('date_record','date')
+                        ->add('filename','text',array('required' =>false))
+                        ->getForm();
             
 
         // On récupère la requête.
@@ -138,9 +131,6 @@ class SongController extends Controller
                 $em = $this->getDoctrine()->getEntityManager();
                 $em->persist($song);
                 $em->flush();
-
-                // On redirige vers l'affichage de la playlist
-              return $this->redirect($this->generateUrl('MyPlaylist_viewSongId', array('id' => $song->getId())));
             }
         }
 

@@ -4,12 +4,12 @@
 
 {% block body %}
 {% if album is empty %}
-		<p>Veuillez ajouter des albums. <a href="http://localhost/Symfony/web/app_dev.php/album/add">">Ajout d'un Album</a></p>
+		<p>Veuillez ajouter des albums. <a href="{{ path('MyPlaylist_addAlbum', {"id": value.id}) }}">">Ajout d'un Album</a></p>
 	{% else %}
     <h3>Choix de l'album à modifier : </h3>
   	<ul>
   	{% for value in album %}
-    	<li><a href="http://localhost/Symfony/web/app_dev.php/album/edit/{{ value.id }}" >{{ value.title }}</a></li>
+    	<li><a href="{{ path('MyPlaylist_editAlbum', {"id": value.id}) }}" >{{ value.title }}</a></li>
   	{% else %}
     	<li>Pas dAlbum(s) trouvé.</li>
   	{% endfor %}

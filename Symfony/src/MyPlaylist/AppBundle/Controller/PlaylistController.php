@@ -41,7 +41,7 @@ class PlaylistController extends Controller
 
         // J'ai raccourci cette partie, car plus rapide à écrire !
         $form = $this->createFormBuilder($playlist)
-            ->add('name',       'text',array('required' =>false))
+            ->add('name','text',array('required' =>false))
             ->getForm();
 
         // On récupère la requête.

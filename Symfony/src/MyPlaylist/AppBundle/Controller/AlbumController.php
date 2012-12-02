@@ -58,7 +58,7 @@ class AlbumController extends Controller
                 $em->flush();
 
             // On redirige vers la page de visualisation de la playlist nouvellement créé
-            return $this->redirect($this->generateUrl('MyPlaylist_viewAlbumId', array('id' => $album->getId())));
+            return new Response('OK');
             }
         }
 
@@ -132,8 +132,8 @@ class AlbumController extends Controller
                 $em->persist($album);
                 $em->flush();
 
-                // On redirige vers l'affichage de la playlist
-              return $this->redirect($this->generateUrl('MyPlaylist_viewAlbumId', array('id' => $album->getId())));
+                // On redirige vers l'affichage de l'Album
+                return new Response('OK');
             }
         }
 
