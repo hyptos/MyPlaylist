@@ -123,3 +123,32 @@ MyPlaylist_editAlbum:
 MyPlaylist_viewDelAlbum:
     pattern:   /album/del
     defaults:  { _controller: MyPlaylistAppBundle:Album:viewDel }
+
+    #PARTIE POUR LES TAGS
+MyPlaylist_viewTag:
+    pattern:   /tag
+    defaults:  { _controller: MyPlaylistAppBundle:Tag:index }
+
+MyPlaylist_viewTagid:
+    pattern:   /tag/view/{id}
+    defaults:  { _controller: MyPlaylistAppBundle:Tag:ViewTag }
+    requirements:
+        id:  \d+
+
+MyPlaylist_viewAddTag:
+    pattern:   /tag/add
+    defaults:  { _controller: MyPlaylistAppBundle:Tag:viewAdd } 
+
+MyPlaylist_viewEditTag:
+    pattern:   /tag/edit
+    defaults:  { _controller: MyPlaylistAppBundle:Tag:viewEditTag }
+
+MyPlaylist_editTag:
+    pattern:   /tag/edit/{id}
+    defaults:  { _controller: MyPlaylistAppBundle:Tag:editTag }
+    requirements:
+        id:  \d+
+
+MyPlaylist_viewDelTag:
+    pattern:   /tag/del
+    defaults:  { _controller: MyPlaylistAppBundle:Tag:viewDel }

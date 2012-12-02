@@ -49,6 +49,12 @@ class Song
      */
     private $filename;
 
+     /**
+     * @ORM\ManyToMany(targetEntity="MyPlaylist\AppBundle\Entity\Tag", cascade={"persist"})
+     */
+    private $tags; //tags avec un "s" car il ya plusieurs tag pour une chanson
+
+
     /**
      * Get id
      *
@@ -151,4 +157,44 @@ class Song
         return $this->filename;
     }
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add tags
+     *
+     * @param MyPlaylist\AppBundle\Entity\Tag $tags
+     * @return Song
+     */
+    public function addTag(\MyPlaylist\AppBundle\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+    
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param MyPlaylist\AppBundle\Entity\Tag $tags
+     */
+    public function removeTag(\MyPlaylist\AppBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
 }

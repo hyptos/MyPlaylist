@@ -1,0 +1,41 @@
+{% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Modification du Tag{% endblock %}
+
+{% block body %}
+    Modification du tag :
+	<form id="form" action="{{ path('MyPlaylist_editTag', {"id": tag.id}) }}" method="post" {{ form_enctype(form) }}>
+    	{{ form_widget(form) }}
+    	<input type="submit" class="btn btn-primary" />
+    </form>
+{% endblock %}
+{% block javascripts %}
+ {{ parent() }}
+<script type="text/javascript">
+$(document).ready(function() {
+    // lorsque je soumets le formulaire
+    $('#form').on('submit', function() {
+ 
+        // je récupère les valeurs
+        var designation = $('#form_designation').val();
+ 
+        // je vérifie une première fois pour ne pas lancer la requête HTTP
+        // si je sais que mon PHP renverra une erreur
+        if(designation == '') {
+            alertify.error('Les champs ne sont pas remplis');
+        } else {
+            // appel Ajax
+            $.ajax({
+                url: $(this).attr('action'), // le nom du fichier indiqué dans le formulaire
+                type: $(this).attr('method'), // la méthode indiquée dans le formulaire (get ou post)
+                data: $(this).serialize(), // je sérialise les données (voir plus loin), ici les $_POST
+                success: function(html) { // je récupère la réponse du fichier PHP
+                    alertify.success('Le tag a été ajoutée'); // j'affiche cette réponse
+                }
+            });
+        }
+        return false; // j'empêche le navigateur de soumettre lui-même le formulaire
+    });
+});
+</script>
+{% endblock %}

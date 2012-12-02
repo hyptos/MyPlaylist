@@ -1,0 +1,18 @@
+{% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Modification de votre Musique{% endblock %}
+
+{% block body %}
+{% if tag is empty %}
+        <p>Veuillez ajouter des albums. <a href="{{ path('MyPlaylist_addTag', {"id": value.id}) }}">">Ajout d'un Album</a></p>
+    {% else %}
+    <h3>Choix d'un tag à modifier : </h3>
+    <ul>
+    {% for value in tag %}
+        <li><a href="{{ path('MyPlaylist_editTag', {"id": value.id}) }}" >{{ value.designation }}</a></li>
+    {% else %}
+        <li>Pas de tag(s) trouvé.</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

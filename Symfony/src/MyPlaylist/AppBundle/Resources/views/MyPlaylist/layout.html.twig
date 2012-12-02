@@ -72,6 +72,14 @@
                         <li><a tabindex="-1" href="{{ path('MyPlaylist_viewDelAlbum') }}">Supprimer</a></li>
                     </ul>
                 </li>    
+                 <li class="dropdown"><a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Tags <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a tabindex="-1" href="{{ path('MyPlaylist_viewTag') }}">Les Tags</a></li>
+                        <li><a tabindex="-1" href="{{ path('MyPlaylist_viewAddTag') }}">Ajouter</a></li>
+                        <li><a tabindex="-1" href="{{ path('MyPlaylist_viewEditTag') }}">Modifier</a></li>
+                        <li><a tabindex="-1" href="{{ path('MyPlaylist_viewDelTag') }}">Supprimer</a></li>
+                    </ul>
+                </li>    
                 <li><a href="{{ path('MyPlaylist_search') }}">Rechercher</a></li>
                 <li><a href="{{ path('MyPlaylist_about') }}">A Propos</a></li>
             </ul>
