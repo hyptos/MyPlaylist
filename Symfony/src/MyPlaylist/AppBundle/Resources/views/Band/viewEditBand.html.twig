@@ -1,0 +1,18 @@
+{% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Modification de votre Musique{% endblock %}
+
+{% block body %}
+{% if band is empty %}
+        <p>Veuillez ajouter des groupes. <a href="{{ path('MyPlaylist_viewAddBand') }}">Ajout d'un groupe</a></p>
+    {% else %}
+    <h3>Choix d'un band à modifier : </h3>
+    <ul>
+    {% for value in band %}
+        <li><a href="{{ path('MyPlaylist_editBand', {"id": value.id}) }}" >{{ value.name }}</a></li>
+    {% else %}
+        <li>Pas de band(s) trouvé.</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

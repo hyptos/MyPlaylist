@@ -152,3 +152,32 @@ MyPlaylist_editTag:
 MyPlaylist_viewDelTag:
     pattern:   /tag/del
     defaults:  { _controller: MyPlaylistAppBundle:Tag:viewDel }
+
+        #PARTIE POUR LES BANDS
+MyPlaylist_viewBand:
+    pattern:   /band
+    defaults:  { _controller: MyPlaylistAppBundle:Band:index }
+
+MyPlaylist_viewBandid:
+    pattern:   /band/view/{id}
+    defaults:  { _controller: MyPlaylistAppBundle:Band:ViewBand }
+    requirements:
+        id:  \d+
+
+MyPlaylist_viewAddBand:
+    pattern:   /band/add
+    defaults:  { _controller: MyPlaylistAppBundle:Band:viewAdd } 
+
+MyPlaylist_viewEditBand:
+    pattern:   /band/edit
+    defaults:  { _controller: MyPlaylistAppBundle:Band:viewEditBand }
+
+MyPlaylist_editBand:
+    pattern:   /band/edit/{id}
+    defaults:  { _controller: MyPlaylistAppBundle:Band:editBand }
+    requirements:
+        id:  \d+
+
+MyPlaylist_viewDelBand:
+    pattern:   /band/del
+    defaults:  { _controller: MyPlaylistAppBundle:Band:viewDel }

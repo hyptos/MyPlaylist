@@ -1,0 +1,14 @@
+{% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Musiques{% endblock %}
+
+{% block body %}
+    <h3>Accueil</h3>
+  	<ul>
+  	{% for value in band %}
+    	<li><a href="{{ path('MyPlaylist_viewBandid', {"id": value.id}) }}" >{{ value.name }}</a></li>
+  	{% else %}
+    	<li>Pas de Groupe(s) trouvé.</li>
+  	{% endfor %}
+</ul>
+{% endblock %}
