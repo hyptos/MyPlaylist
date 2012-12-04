@@ -4,7 +4,7 @@
 
 {% block body %}
 {% if tag is empty %}
-        <p>Veuillez ajouter des albums. <a href="{{ path('MyPlaylist_addTag', {"id": value.id}) }}">">Ajout d'un Album</a></p>
+        <p>Veuillez ajouter des tags. <a href="{{ path('MyPlaylist_viewAddTag') }}">Ajout d'un tag</a></p>
     {% else %}
     <h3>Choix d'un tag à modifier : </h3>
     <ul>

@@ -3,7 +3,7 @@
 {% block title %}{{ parent() }} - Supprimer{% endblock %}
 
 {% block body %}
-    Liste déroulante des Musiques pour en supprimer une.
+    Liste déroulante des tags pour en supprimer une.
     <form action="{{ path('MyPlaylist_viewDelTag') }}" method="post" {{ form_enctype(form) }}>
     	{{ form_widget(form) }}
     	<input type="submit" class="btn btn-primary" />
