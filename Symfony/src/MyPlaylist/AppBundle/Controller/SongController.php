@@ -21,8 +21,14 @@ class SongController extends Controller
                          ->getRepository('MyPlaylistAppBundle:Playlist')
                          ->findAll();
 
+        $tag = $this->getDoctrine()
+                         ->getManager()
+                         ->getRepository('MyPlaylistAppBundle:Tag')
+                         ->findAll();                 
+
         return $this->render('MyPlaylistAppBundle:Song:index.html.twig', array('song'     =>  $song,
-                                                                               'playlist' =>  $playlist ));
+                                                                               'playlist' =>  $playlist,
+                                                                               'tag'      =>  $tag ));
     }
 
      public function viewSongAction(Song $song)
@@ -260,7 +266,8 @@ class SongController extends Controller
 
         return $this->render('MyPlaylistAppBundle:Song:song.html.twig');
     }
-  
+
+    
 }
 
 ?>

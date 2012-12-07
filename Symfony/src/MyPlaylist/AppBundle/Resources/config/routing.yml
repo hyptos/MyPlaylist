@@ -129,7 +129,7 @@ MyPlaylist_viewTag:
     pattern:   /tag
     defaults:  { _controller: MyPlaylistAppBundle:Tag:index }
 
-MyPlaylist_viewTagid:
+MyPlaylist_viewTagId:
     pattern:   /tag/view/{id}
     defaults:  { _controller: MyPlaylistAppBundle:Tag:ViewTag }
     requirements:
@@ -152,6 +152,20 @@ MyPlaylist_editTag:
 MyPlaylist_viewDelTag:
     pattern:   /tag/del
     defaults:  { _controller: MyPlaylistAppBundle:Tag:viewDel }
+
+MyPlaylist_addTagToSong:
+    pattern:   /tag/{idTag}/addToSong/{idSong}
+    defaults:  { _controller: MyPlaylistAppBundle:Tag:addToSong }
+    requirements:
+        idSong:  \d+  
+        idTag:  \d+  
+
+MyPlaylist_delTagToSong:
+    pattern:   /tag/{idTag}/delToSong/{idSong}
+    defaults:  { _controller: MyPlaylistAppBundle:Tag:delToSong }
+    requirements:
+        idSong:  \d+  
+        idPlaylist:  \d+      
 
         #PARTIE POUR LES BANDS
 MyPlaylist_viewBand:

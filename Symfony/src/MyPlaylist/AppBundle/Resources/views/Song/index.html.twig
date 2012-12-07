@@ -16,8 +16,11 @@
     		Chemin
     	</th>
     	<th>
-    		Ajout
+    		Ajout Playlist
     	</th>
+        <th>
+            Ajout Tag
+        </th>
     </tr>
   	{% for value in song %}
     	<tr>
@@ -35,6 +38,21 @@
                         <li><a href="{{ path('MyPlaylist_addSongToPlaylist', {"idSong": value.id,"idPlaylist": valuePl.id }) }}" >{{ valuePl.name }}</a></li>
                     {% else %}
                         <p>Veuillez creer une playlist</p>
+                    {% endfor %}
+                  </ul>
+                </div>
+            </td>
+            <td>
+                <div class="btn-group">
+                  <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+                    Action
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    {% for valueTag in tag %}                    
+                        <li><a href="{{ path('MyPlaylist_addTagToSong', {"idSong": value.id,"idTag": valueTag.id }) }}" >{{ valueTag.designation }}</a></li>
+                    {% else %}                        
+                        <li><a href="{{ path('MyPlaylist_viewAddTag')}}">Veuillez creer un Tag</a></li>                        
                     {% endfor %}
                   </ul>
                 </div>

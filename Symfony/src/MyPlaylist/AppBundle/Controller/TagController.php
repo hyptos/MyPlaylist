@@ -185,6 +185,77 @@ class TagController extends Controller
         ));
     }
 
+      /******************** Permet d'ajouter un tag à une song ********************/
+    public function addToSongAction($idSong,$idTag)
+    {
+
+         $tag      = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Tag')
+                            ->find($idTag); 
+                  
+        $song   = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Song')
+                            ->find($idSong);                    
+
+        // On récupère la requête.
+        $request = $this->get('request');
+
+        // On vérifie qu'elle est de type « POST ».
+        if( $request->getMethod() == 'GET' )
+        {
+            // On fait le lien chanson <-> Tag.
+            $song->addTag($tag);
+
+
+            // On l'enregistre dans la BDD
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($tag);
+            $em->flush();
+
+            // On redirige vers la page de visualisation de la song nouvellement créé
+            return $this->redirect($this->generateUrl('MyPlaylist_viewSongId', array('id' => $song->getId())));
+            }        
+
+        return $this->render('MyPlaylistAppBundle:Tag:tag.html.twig');
+    }
+
+    public function delToSongAction($idSong,$idTag)
+    {
+
+         $tag   = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Tag')
+                            ->find($idTag); 
+                  
+        $song   = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Song')
+                            ->find($idSong);                    
+
+        // On récupère la requête.
+        $request = $this->get('request');
+
+        // On vérifie qu'elle est de type « POST ».
+        if( $request->getMethod() == 'GET' )
+        {
+            // On supprime le lien chanson <-> Tag.
+            $song->removeTag($tag);
+
+                // On l'enregistre dans la BDD
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($tag);
+                $em->flush();
+
+                // On redirige vers la page de visualisation de la song 
+                return $this->redirect($this->generateUrl('MyPlaylist_viewSongId', array('id' => $song->getId())));
+            }        
+
+        return $this->render('MyPlaylistAppBundle:Tag:tag.html.twig');
+    }
+  
+
 }
 
 ?>

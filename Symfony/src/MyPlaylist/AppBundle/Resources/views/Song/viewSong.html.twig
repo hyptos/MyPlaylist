@@ -4,6 +4,14 @@
 
 {% block body %}
     Titre de la musique : {{ song.title }} <br>
-    Date de production : {{ song.dateRecord|date('d-m-Y') }}<br> 
-    Path : {{ song.filename }}
+    Date de production : {{ song.dateRecord|date('d-m-Y') }}<br /> 
+    Path : {{ song.filename }}<br />
+    {% if song.tags is empty %}
+    {% else %}
+    tags : 
+    {% for tag in song.tags %}
+    <p class="bundle"><a href="{{ path('MyPlaylist_viewTagId',{"id":tag.id}) }}">{{ tag.designation }}</a>&nbsp;<a class="close" href="{{ path('MyPlaylist_delTagToSong',{"idTag": tag.id,"idSong":song.id}) }}">&times;</a></p>
+    {% if not loop.last %} - {% endif %}
+        {% endfor %}
+        {% endif %}
 {% endblock %}
