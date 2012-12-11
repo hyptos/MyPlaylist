@@ -24,10 +24,16 @@ class SongController extends Controller
         $tag = $this->getDoctrine()
                          ->getManager()
                          ->getRepository('MyPlaylistAppBundle:Tag')
-                         ->findAll();                 
+                         ->findAll();  
+
+        $album = $this->getDoctrine()
+                         ->getManager()
+                         ->getRepository('MyPlaylistAppBundle:Album')
+                         ->findAll();                                    
 
         return $this->render('MyPlaylistAppBundle:Song:index.html.twig', array('song'     =>  $song,
                                                                                'playlist' =>  $playlist,
+                                                                               'album'    =>  $album,
                                                                                'tag'      =>  $tag ));
     }
 

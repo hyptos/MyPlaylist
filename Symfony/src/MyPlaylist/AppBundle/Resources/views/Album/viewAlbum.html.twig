@@ -4,5 +4,27 @@
 
 {% block body %}
     Titre de la musique : {{ album.title }} <br>
-    Date de production : {{ album.dateProduction|date('d-m-Y') }}<br> 
+    Date de production : {{ album.dateProduction|date('d-m-Y') }}<br>
+    {% if album.songs is empty %}
+    {% else %}
+    <table class="table table-striped">
+    <tr>
+    	<th>
+    		Musiques
+    	<th>
+    	<th>
+    		Suppression de l'album
+    	<th>
+    </tr>
+    <tr>
+    {% for song in album.songs %}
+    <td><a href="{{ path('MyPlaylist_viewSongId',{"id":song.id}) }}">{{ song.title }}</a></td>
+
+    <td><a class="close" href="{{ path('MyPlaylist_delSongToAlbum',{"idSong": song.id,"idAlbum":album.id}) }}">&times;</a>
+    </td>
+    {% if not loop.last %} - {% endif %}
+        {% endfor %}
+        {% endif %}
+    </tr>
+    </table>
 {% endblock %}

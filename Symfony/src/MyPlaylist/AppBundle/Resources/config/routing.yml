@@ -124,6 +124,20 @@ MyPlaylist_viewDelAlbum:
     pattern:   /album/del
     defaults:  { _controller: MyPlaylistAppBundle:Album:viewDel }
 
+MyPlaylist_addSongToAlbum:
+    pattern:   /album/{idAlbum}/addToAlbum/{idSong}
+    defaults:  { _controller: MyPlaylistAppBundle:Album:addToAlbum }
+    requirements:
+        idSong:  \d+  
+        idTag:  \d+  
+
+MyPlaylist_delSongToAlbum:
+    pattern:   /album/{idAlbum}/delToAlbum/{idSong}
+    defaults:  { _controller: MyPlaylistAppBundle:Album:delToAlbum }
+    requirements:
+        idSong:  \d+  
+        idPlaylist:  \d+         
+
     #PARTIE POUR LES TAGS
 MyPlaylist_viewTag:
     pattern:   /tag

@@ -188,6 +188,75 @@ class AlbumController extends Controller
         ));
     }
 
+    /******************** Permet d'ajouter une chanson à une Album ********************/
+    public function addToAlbumAction($idSong,$idAlbum)
+    {
+
+         $song      = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Song')
+                            ->find($idSong); 
+                  
+        $album      = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Album')
+                            ->find($idAlbum);                    
+
+        // On récupère la requête.
+        $request = $this->get('request');
+
+        // On vérifie qu'elle est de type « POST ».
+        if( $request->getMethod() == 'GET' )
+        {
+            // On fait le lien chanson <-> album.
+            $album->addSong($song);
+
+
+            // On l'enregistre dans la BDD
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($song);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('MyPlaylist_viewAlbumId', array('id' => $album->getId())));
+            }        
+
+        return $this->render('MyPlaylistAppBundle:Album:album.html.twig');
+    }
+
+    public function delToAlbumAction($idSong,$idAlbum)
+    {
+
+         $song      = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Song')
+                            ->find($idSong); 
+                  
+        $album      = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Album')
+                            ->find($idAlbum);                    
+
+        // On récupère la requête.
+        $request = $this->get('request');
+
+        // On vérifie qu'elle est de type « POST ».
+        if( $request->getMethod() == 'GET' )
+        {
+            // On supprime le lien chanson <-> Playlist.
+            $album->removeSong($song);
+
+                // On l'enregistre dans la BDD
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($song);
+                $em->flush();
+
+                // On redirige vers la page de visualisation de la Album 
+                return $this->redirect($this->generateUrl('MyPlaylist_viewAlbumId', array('id' => $album->getId())));
+            }        
+
+        return $this->render('MyPlaylistAppBundle:Album:album.html.twig');
+    }
+
 }
 
 ?>

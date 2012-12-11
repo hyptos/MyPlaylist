@@ -21,6 +21,9 @@
         <th>
             Ajout Tag
         </th>
+      <th>
+            Ajout album
+      </th>
     </tr>
   	{% for value in song %}
     	<tr>
@@ -53,6 +56,21 @@
                         <li><a href="{{ path('MyPlaylist_addTagToSong', {"idSong": value.id,"idTag": valueTag.id }) }}" >{{ valueTag.designation }}</a></li>
                     {% else %}                        
                         <li><a href="{{ path('MyPlaylist_viewAddTag')}}">Veuillez creer un Tag</a></li>                        
+                    {% endfor %}
+                  </ul>
+                </div>
+            </td>
+            <td>
+                <div class="btn-group">
+                  <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+                    Action
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    {% for valueAlb in album %}                    
+                        <li><a href="{{ path('MyPlaylist_addSongToAlbum', {"idSong": value.id,"idAlbum": valueAlb.id }) }}" >{{ valueAlb.title }}</a></li>
+                    {% else %}                        
+                        <li><a href="{{ path('MyPlaylist_viewAddAlbum')}}">Veuillez creer un Album</a></li>                        
                     {% endfor %}
                   </ul>
                 </div>
