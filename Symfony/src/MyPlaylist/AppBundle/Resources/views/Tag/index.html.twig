@@ -6,7 +6,7 @@
     <h3>Accueil</h3>
   	<ul>
   	{% for value in tag %}
-    	<li><a href="{{ path('MyPlaylist_viewTagid', {"id": value.id}) }}" >{{ value.designation }}</a></li>
+    	<li><a href="{{ path('MyPlaylist_viewTagId', {"id": value.id}) }}" >{{ value.designation }}</a></li>
   	{% else %}
     	<li>Pas de Tag(s) trouvé.</li>
   	{% endfor %}
