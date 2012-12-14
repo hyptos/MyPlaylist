@@ -186,7 +186,7 @@ MyPlaylist_viewBand:
     pattern:   /band
     defaults:  { _controller: MyPlaylistAppBundle:Band:index }
 
-MyPlaylist_viewBandid:
+MyPlaylist_viewBandId:
     pattern:   /band/view/{id}
     defaults:  { _controller: MyPlaylistAppBundle:Band:ViewBand }
     requirements:
@@ -209,3 +209,17 @@ MyPlaylist_editBand:
 MyPlaylist_viewDelBand:
     pattern:   /band/del
     defaults:  { _controller: MyPlaylistAppBundle:Band:viewDel }
+
+MyPlaylist_addAlbumToBand:
+    pattern:   /band/{idBand}/addToAlbum/{idAlbum}
+    defaults:  { _controller: MyPlaylistAppBundle:Band:addToAlbum }
+    requirements:
+        idBand:  \d+  
+        idTag:  \d+  
+
+MyPlaylist_delAlbumToBand:
+    pattern:   /band/{idBand}/delToAlbum/{idAlbum}
+    defaults:  { _controller: MyPlaylistAppBundle:Band:delToAlbum }
+    requirements:
+        idBand:  \d+  
+        idPlaylist:  \d+    

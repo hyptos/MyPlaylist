@@ -49,6 +49,11 @@ class Band
      */
     private $date_insert;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="MyPlaylist\AppBundle\Entity\Album", cascade={"persist"})
+     */
+    private $albums; //albums avec un "s" car un groupe peut produire plusieurs albums
+
 
     /**
      * Get id
@@ -150,5 +155,45 @@ class Band
     public function getDateInsert()
     {
         return $this->date_insert;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->albums = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add albums
+     *
+     * @param MyPlaylist\AppBundle\Entity\Album $albums
+     * @return Band
+     */
+    public function addAlbum(\MyPlaylist\AppBundle\Entity\Album $albums)
+    {
+        $this->albums[] = $albums;
+    
+        return $this;
+    }
+
+    /**
+     * Remove albums
+     *
+     * @param MyPlaylist\AppBundle\Entity\Album $albums
+     */
+    public function removeAlbum(\MyPlaylist\AppBundle\Entity\Album $albums)
+    {
+        $this->albums->removeElement($albums);
+    }
+
+    /**
+     * Get albums
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAlbums()
+    {
+        return $this->albums;
     }
 }

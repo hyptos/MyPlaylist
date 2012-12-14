@@ -49,6 +49,11 @@ class Band
      */
     private $date_insert;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="MyPlaylist\AppBundle\Entity\Album", cascade={"persist"})
+     */
+    private $albums; //albums avec un "s" car un groupe peut produire plusieurs albums
+
 
     /**
      * Get id

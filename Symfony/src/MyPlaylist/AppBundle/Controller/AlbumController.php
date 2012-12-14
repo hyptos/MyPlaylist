@@ -24,7 +24,12 @@ class AlbumController extends Controller
 
     public function viewAlbumAction(Album $album)
     {    
-        return $this->render('MyPlaylistAppBundle:Album:viewAlbum.html.twig', array('album'   => $album ));
+
+        $band = $this->getDoctrine()
+                         ->getManager()
+                         ->getRepository('MyPlaylistAppBundle:Band')
+                         ->find($album->getBand()->getId());
+        return $this->render('MyPlaylistAppBundle:Album:viewAlbum.html.twig', array('album'   => $album,'band' => $band ));
     }
 
 

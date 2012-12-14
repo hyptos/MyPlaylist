@@ -17,7 +17,13 @@ class BandController extends Controller
                          ->getRepository('MyPlaylistAppBundle:Band')
                          ->findAll();
 
-        return $this->render('MyPlaylistAppBundle:Band:index.html.twig', array('band'   => $band ));
+        $album = $this->getDoctrine()
+                         ->getManager()
+                         ->getRepository('MyPlaylistAppBundle:Album')
+                         ->findAll();
+
+        return $this->render('MyPlaylistAppBundle:Band:index.html.twig', array('band'   => $band,
+                                                                                'album' => $album ));
         
     }
 
@@ -196,6 +202,75 @@ class BandController extends Controller
         return $this->render('MyPlaylistAppBundle:Band:viewDel.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+     /******************** Permet d'ajouter un album à un groupe ********************/
+    public function addToAlbumAction($idBand,$idAlbum)
+    {
+
+         $band      = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Band')
+                            ->find($idBand); 
+                  
+        $album      = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Album')
+                            ->find($idAlbum);                    
+
+        // On récupère la requête.
+        $request = $this->get('request');
+
+        // On vérifie qu'elle est de type « POST ».
+        if( $request->getMethod() == 'GET' )
+        {
+            // On fait le lien band <-> album.
+            $band->addAlbum($album);
+
+
+            // On l'enregistre dans la BDD
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($album);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('MyPlaylist_viewBandId', array('id' => $band->getId())));
+            }        
+
+        return $this->render('MyPlaylistAppBundle:band:band.html.twig');
+    }
+
+    public function delToAlbumAction($idBand,$idAlbum)
+    {
+
+        $band       = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Band')
+                            ->find($idBand); 
+                  
+        $album      = $this ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('MyPlaylistAppBundle:Album')
+                            ->find($idAlbum);                    
+
+        // On récupère la requête.
+        $request = $this->get('request');
+
+        // On vérifie qu'elle est de type « POST ».
+        if( $request->getMethod() == 'GET' )
+        {
+            // On fait le lien band <-> album.
+            $band->removeAlbum($album);
+
+
+            // On l'enregistre dans la BDD
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($album);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('MyPlaylist_viewBandId', array('id' => $band->getId())));
+            }        
+
+        return $this->render('MyPlaylistAppBundle:band:band.html.twig');
     }
 
 }

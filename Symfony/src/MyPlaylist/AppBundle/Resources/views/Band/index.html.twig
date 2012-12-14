@@ -3,12 +3,37 @@
 {% block title %}{{ parent() }} - Musiques{% endblock %}
 
 {% block body %}
-    <h3>Accueil</h3>
-  	<ul>
+  <h3>Accueil</h3>
+    <table class="table table-striped" >
+    <tr>
+    	<th>
+    		Nom
+    	</th>
+    	<th>
+    		Ajout d'un Album
+    	</th>
+    </tr>
   	{% for value in band %}
-    	<li><a href="{{ path('MyPlaylist_viewBandid', {"id": value.id}) }}" >{{ value.name }}</a></li>
+    	<tr>
+    		<td><a href="{{ path('MyPlaylist_viewBandId', {"id": value.id}) }}" >{{ value.name }}</a></td>
+    		<td>
+                <div class="btn-group">
+                  <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+                    Action
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    {% for valueAlb in album %}                    
+                        <li><a href="{{ path('MyPlaylist_addAlbumToBand', {"idBand": value.id,"idAlbum": valueAlb.id }) }}" >{{ valueAlb.title }}</a></li>
+                    {% else %}
+                        <p>Veuillez creer un Album</p>
+                    {% endfor %}
+                  </ul>
+                </div>
+            </td>
+    	</tr>
   	{% else %}
-    	<li>Pas de Groupe(s) trouvé.</li>
+  	    	<p>Pas de Groupe(s) trouvé.</p>
   	{% endfor %}
-</ul>
+</table>
 {% endblock %}

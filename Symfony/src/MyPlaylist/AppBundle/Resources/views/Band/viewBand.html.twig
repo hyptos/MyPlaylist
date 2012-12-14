@@ -3,5 +3,13 @@
 {% block title %}{{ parent() }} - Index{% endblock %}
 
 {% block body %}
-    Designation : {{ tag.designation }} <br>
+    Nom du groupe : {{ band.name }} <br>    
+    {% if band.albums is empty %}
+    {% else %}
+    Albums : 
+    {% for album in band.albums %}
+    <p class="bundle"><a href="{{ path('MyPlaylist_viewAlbumId',{"id":album.id}) }}">{{ album.title }}</a>&nbsp;<a class="close" href="{{ path('MyPlaylist_delAlbumToBand',{"idBand": band.id,"idAlbum":album.id}) }}">&times;</a></p>
+    {% if not loop.last %}{% endif %}
+        {% endfor %}
+        {% endif %}
 {% endblock %}

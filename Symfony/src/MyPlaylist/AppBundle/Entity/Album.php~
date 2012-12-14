@@ -49,6 +49,7 @@ class Album
 
     /**
      * @ORM\ManyToOne(targetEntity="MyPlaylist\AppBundle\Entity\Band")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $band;
 
@@ -170,28 +171,5 @@ class Album
     public function getSongs()
     {
         return $this->songs;
-    }
-
-    /**
-     * Set band
-     *
-     * @param MyPlaylist\AppBundle\Entity\Band $band
-     * @return Album
-     */
-    public function setBand(\MyPlaylist\AppBundle\Entity\Band $band)
-    {
-        $this->band = $band;
-    
-        return $this;
-    }
-
-    /**
-     * Get band
-     *
-     * @return MyPlaylist\AppBundle\Entity\Band 
-     */
-    public function getBand()
-    {
-        return $this->band;
     }
 }
