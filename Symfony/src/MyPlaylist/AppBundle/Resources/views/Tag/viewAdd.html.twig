@@ -9,6 +9,15 @@
     	{{ form_widget(form) }}
     	<input type="submit" class="btn btn-primary" />
     </form>
+    <h3>Tags disponible</h3>
+    {% if tag is empty %}
+        <p>Veuillez ajouter des tags avec le formulaire ci-dessus</p>
+    {% else %}
+    {% for value in tag %}
+        <p class="bundle"><a href="{{ path('MyPlaylist_editTag', {"id": value.id}) }}" >{{ value.designation }}</a></p>
+    {% else %}
+    {% endfor %}
+{% endif %}
 </div>
 {% endblock %}
 {% block javascripts %}
@@ -32,7 +41,10 @@ $(document).ready(function() {
                 type: $(this).attr('method'), // la méthode indiquée dans le formulaire (get ou post)
                 data: $(this).serialize(), // je sérialise les données (voir plus loin), ici les $_POST
                 success: function(html) { // je récupère la réponse du fichier PHP
-                    alertify.success('La chanson a été ajoutée'); // j'affiche cette réponse
+                    alertify.success(html); // j'affiche cette réponse
+                },
+                error: function(html) { // je récupère la réponse du fichier PHP
+                    alertify.error(html); // j'affiche cette réponse
                 }
             });
         }

@@ -32,9 +32,14 @@ class TagController extends Controller
        $tag = new Tag;
 
         // J'ai raccourci cette partie, car plus rapide à écrire !
-        $form = $this->createFormBuilder($tag)
-            ->add('designation','text',array('required' =>false))
-            ->getForm();
+        $form   = $this->createFormBuilder($tag)
+                ->add('designation','text',array('required' =>false))
+                ->getForm();
+
+        $tagAll = $this->getDoctrine()
+                         ->getManager()
+                         ->getRepository('MyPlaylistAppBundle:Tag')
+                         ->findAll();    
 
         // On récupère la requête.
         $request = $this->get('request');
@@ -49,18 +54,30 @@ class TagController extends Controller
             // (Nous verrons la validation des objets en détail plus bas dans ce chapitre.)
             if( $form->isValid() )
             {
-                // On l'enregistre notre objet $article dans la base de données.
-                $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($tag);
-                $em->flush();
+                //Requete pour savoir si le tag existe
+               $result   = $this->getDoctrine()
+                         ->getManager()
+                         ->getRepository('MyPlaylistAppBundle:Tag')
+                         ->findByDesignation($tag->getDesignation());    
 
-                // On redirige vers la page de visualisation de la tag nouvellement créé
-                return new response('OK');
+                if($result){
+                    return new response('Tag existant');
+                }
+                else{
+                    // On l'enregistre notre objet $article dans la base de données.
+                    $em = $this->getDoctrine()->getEntityManager();
+                    $em->persist($tag);
+                    $em->flush();
+
+                    // On renvoi la reponse ajax
+                    return new response('Tag ajouté !');
+                }
             }
         }
 
         return $this->render('MyPlaylistAppBundle:Tag:viewAdd.html.twig', array(
             'form' => $form->createView(),
+            'tag'   => $tagAll,
         ));
     }
 
