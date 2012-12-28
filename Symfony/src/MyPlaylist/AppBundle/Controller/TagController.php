@@ -61,7 +61,7 @@ class TagController extends Controller
                          ->findByDesignation($tag->getDesignation());    
 
                 if($result){
-                    return new response('Tag existant');
+                    return new response('Tag existant',400);
                 }
                 else{
                     // On l'enregistre notre objet $article dans la base de données.
@@ -70,7 +70,7 @@ class TagController extends Controller
                     $em->flush();
 
                     // On renvoi la reponse ajax
-                    return new response('Tag ajouté !');
+                    return new response('Tag ajouté !',200);
                 }
             }
         }
