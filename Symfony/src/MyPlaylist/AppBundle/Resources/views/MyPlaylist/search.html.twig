@@ -3,5 +3,38 @@
 {% block title %}{{ parent() }} - Recherche{% endblock %}
 
 {% block body %}
-     Faire une recherche : <input type="text" data-provide="typeahead">
+     <h3>Faire une recherche</h3>
+    <form id="form" action="{{ path('MyPlaylist_search') }}" method="post" {{ form_enctype(form) }}>
+    	{{ form_widget(form) }}
+    	<input type="submit" class="btn btn-primary" />
+    </form>
+    <div class="search_result">
+
+    <h2>Chansons</h2>
+    {% if songs is empty %}
+    	<p>Pas de chansons trouvé.</p>
+	{% else %}
+  	{% for value in songs %}
+    	<p><a href="{{ path('MyPlaylist_viewSongId', {"id": value.id}) }}" >{{ value.title }}</a></p>
+  	{% endfor %}
+	{% endif %}
+
+	<h2>Album</h2>
+	{% if albums is empty %}
+		<p>Pas d'album trouvé.</p>
+	{% else %}
+  	{% for value in albums %}
+    	<p><a href="{{ path('MyPlaylist_viewAlbumId', {"id": value.id}) }}" >{{ value.title }}</a></p>
+  	{% endfor %}
+	{% endif %}
+
+	<h2>Groupe</h2>
+	{% if bands is empty %}
+		<p>Pas de groupe trouvé.</p>
+	{% else %}
+  	{% for value in bands %}
+    	<p><a href="{{ path('MyPlaylist_viewBandId', {"id": value.id}) }}" >{{ value.name }}</a></p>
+  	{% endfor %}
+	{% endif %}
+    </div>
 {% endblock %}

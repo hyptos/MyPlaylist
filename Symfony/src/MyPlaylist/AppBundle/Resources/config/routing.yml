@@ -15,6 +15,10 @@ MyPlaylist_about:
     pattern:   /home/about
     defaults:  { _controller: MyPlaylistAppBundle:Home:viewAbout }
 
+MyPlaylist_clementine:
+    pattern:   /home/clementine
+    defaults:  { _controller: MyPlaylistAppBundle:Home:clementine }
+
 
 #PARTIE POUR LES PLAYLISTS
 MyPlaylist_viewPlaylist:

@@ -1,0 +1,15 @@
+{% extends "MyPlaylistAppBundle:MyPlaylist:layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Recherche{% endblock %}
+
+{% block body %}
+  {% if tables is empty %}
+    <p>Aucune tables trouvées</p>
+  {% else %}
+    <h1>Import d'une table</h1>
+	<form id="form" action="{{ path('MyPlaylist_clementine') }}" method="post" {{ form_enctype(form) }}>
+    	{{ form_widget(form) }}
+    	<input type="submit" class="btn btn-primary" />
+    </form>
+    {% endif %}
+{% endblock %}
