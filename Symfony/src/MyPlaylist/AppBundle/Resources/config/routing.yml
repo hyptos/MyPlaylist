@@ -56,6 +56,12 @@ MyPlaylist_view_slugPlaylist:
         annee:  \d4
         format: html|xml
 
+MyPlaylist_createPlaylistM3u:
+    pattern:   /playlist/create/m3u/{id}
+    defaults:  { _controller: MyPlaylistAppBundle:Playlist:craeteM3u }
+    requirements:
+        id:  \d+
+
 #PARTIE POUR LES MUSIQUES
 MyPlaylist_viewSong:
     pattern:   /song

@@ -28,5 +28,29 @@
         {% endfor %}
         </table>
         {% endif %}
+        <button id="generatePlaylist" class="btn">Generéer la playlist</button>
+{% endblock %}
+{% block javascripts %}
+ {{ parent() }}
+<script type="text/javascript">
+$(document).ready(function() {
+    // lorsque je soumets le formulaire
+    $('#generatePlaylist').on('click', function() {
+            // appel Ajax
+            $.ajax({
+                url: "{{ path('MyPlaylist_createPlaylistM3u', {"id": playlist.id }) }}",
+                type: "GET",  
+                success: function(html) { 
+                    alertify.success(html);
+                    
+                },
+                error: function(html) { // je récupère la réponse du fichier PHP
+                    alertify.error(html.responseText); // j'affiche cette réponse
+                }
+            });
+        return false; // j'empêche le navigateur de soumettre lui-même le formulaire
+    });
+});
+</script>
 {% endblock %}
 

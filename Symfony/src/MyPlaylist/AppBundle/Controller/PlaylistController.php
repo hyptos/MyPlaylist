@@ -197,6 +197,11 @@ class PlaylistController extends Controller
         ));
     }
 
+    public function craeteM3uAction(Playlist $playlist){
+        $playlist->createM3u();
+        return new response('Le fichier va être télécharger !');
+    }
+
 }
 
 ?>

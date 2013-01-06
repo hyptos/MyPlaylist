@@ -104,4 +104,23 @@ class Playlist
     {
         return $this->songs;
     }
+
+    /**
+     * Create Playlist.m3u
+     *
+     * @return void
+     */
+    public function createM3u(){
+
+        $fichier = $this->getName().'.m3u';
+        //On ouvre le fichier
+        $fp = fopen($fichier ,"w");
+        //On ecrit dedans
+        foreach($this->getSongs() as $value){
+            fputs($fp, $value->getFilename());
+            fputs($fp, "\n"); 
+        }
+        //On ferme le fichier
+        fclose($fp);
+    }
 }
