@@ -5,6 +5,7 @@ namespace MyPlaylist\AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use MyPlaylist\AppBundle\Entity\Album;
+use MyPlaylist\AppBundle\Entity\Band;
 
 class AlbumController extends Controller
 {
@@ -24,12 +25,17 @@ class AlbumController extends Controller
 
     public function viewAlbumAction(Album $album)
     {    
-
-        $band = $this->getDoctrine()
+        $band = new Band;
+        //Si il n'y pas de groupe
+        if($album->getBand() != NULL){
+            $band = $this->getDoctrine()
                          ->getManager()
                          ->getRepository('MyPlaylistAppBundle:Band')
                          ->find($album->getBand()->getId());
-        return $this->render('MyPlaylistAppBundle:Album:viewAlbum.html.twig', array('album'   => $album,'band' => $band ));
+          
+        }
+
+        return $this->render('MyPlaylistAppBundle:Album:viewAlbum.html.twig', array('album'   => $album,'band' => $band ));             
     }
 
 

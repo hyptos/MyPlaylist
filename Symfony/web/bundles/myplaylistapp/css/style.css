@@ -3,11 +3,11 @@ color: #CCC;
 }
 
 .bundle {
-	display:inline;
+	display:inline-block;
 	color: #3a87ad;
 	background-color: #d9edf7;
 	padding: 5px 10px 5px 5px;
-	margin-bottom: 20px;
+	margin-bottom:10px;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 	border: 1px solid #bce8f1;
 	-webkit-border-radius: 10px;

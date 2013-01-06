@@ -14,7 +14,7 @@
         <p>Veuillez ajouter des tags avec le formulaire ci-dessus</p>
     {% else %}
     {% for value in tag %}
-        <p class="bundle"><a href="{{ path('MyPlaylist_editTag', {"id": value.id}) }}" >{{ value.designation }}</a></p>
+        <span class="bundle"><a href="{{ path('MyPlaylist_editTag', {"id": value.id}) }}" >{{ value.designation }}</a></span>
     {% else %}
     {% endfor %}
 {% endif %}

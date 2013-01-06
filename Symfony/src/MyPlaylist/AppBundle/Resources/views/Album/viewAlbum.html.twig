@@ -5,26 +5,16 @@
 {% block body %}
     Titre de l'album : {{ album.title }} <br>
     Date de production : {{ album.dateProduction|date('d-m-Y') }}<br>
+    {% if band.name is empty %}
+    {% else %}
     Groupe : {{ band.name }}<br>
+    {% endif %}
     {% if album.songs is empty %}
     {% else %}
-    <table class="table table-striped">
-    <tr>
-    	<th>
-    		Musiques
-    	<th>
-    	<th>
-    		Suppression de l'album
-    	<th>
-    </tr>
-    <tr>
+    <p>Liste des chansons :</p>
     {% for song in album.songs %}
-    <td><a href="{{ path('MyPlaylist_viewSongId',{"id":song.id}) }}">{{ song.title }}</a></td>
-    <td><a class="close" href="{{ path('MyPlaylist_delSongToAlbum',{"idSong": song.id,"idAlbum":album.id}) }}">&times;</a>
-    </td>
+    <span class="bundle"><a href="{{ path('MyPlaylist_viewSongId',{"id":song.id}) }}">{{ song.title }}</a>&nbsp;<a class="close" href="{{ path('MyPlaylist_delSongToAlbum',{"idSong": song.id,"idAlbum":album.id}) }}">&times;</a></span>
     {% if not loop.last %} - {% endif %}
         {% endfor %}
         {% endif %}
-    </tr>
-    </table>
 {% endblock %}

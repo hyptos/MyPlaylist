@@ -33,6 +33,10 @@ $(document).ready(function() {
                 data: $(this).serialize(), // je sérialise les données (voir plus loin), ici les $_POST
                 success: function(html) { // je récupère la réponse du fichier PHP
                     alertify.success('La chanson a été ajoutée'); // j'affiche cette réponse
+                    $('#form_name').val('');
+                },
+                error: function(html) { // je récupère la réponse du fichier PHP
+                    alertify.error(html.responseText); // j'affiche cette réponse
                 }
             });
         }

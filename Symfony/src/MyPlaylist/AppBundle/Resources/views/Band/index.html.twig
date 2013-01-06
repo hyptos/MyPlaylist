@@ -4,6 +4,8 @@
 
 {% block body %}
   <h3>Accueil</h3>
+  {% if band is empty %}
+  {% else %}
     <table class="table table-striped" >
     <tr>
     	<th>
@@ -13,6 +15,7 @@
     		Ajout d'un Album
     	</th>
     </tr>
+    {% endif %}
   	{% for value in band %}
     	<tr>
     		<td><a href="{{ path('MyPlaylist_viewBandId', {"id": value.id}) }}" >{{ value.name }}</a></td>
@@ -36,4 +39,5 @@
   	    	<p>Pas de Groupe(s) trouvé.</p>
   	{% endfor %}
 </table>
+
 {% endblock %}
